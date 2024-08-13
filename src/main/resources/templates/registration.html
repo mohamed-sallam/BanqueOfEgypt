@@ -1,13 +1,19 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
   <title>Forms / Layouts - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
@@ -22,39 +28,35 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <style>
-    .form-group {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-    .form-group label {
-      width: 120px; /* Adjust width as needed */
-      font-weight: bold;
-      font-family: 'Open Sans', sans-serif; /* Ensure consistent font */
-    }
-    .form-group .form-select,
-    .form-group .form-control {
-      flex: 1;
-    }
-    .form-control,
-    .form-select {
-      font-family: 'Open Sans', sans-serif; /* Ensure consistent font */
-    }
-  </style>
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Updated: Apr 20 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
+
 <body>
 
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
+
   <div class="d-flex align-items-center justify-content-between">
-    <a href="Transaction.html" class="logo d-flex align-items-center">
+    <a href="/" class="logo d-flex align-items-center">
       <img src="assets/img/logo.png" alt="">
       <span class="d-none d-lg-block">Banque of Egypt</span>
     </a>
     <i class="bi bi-list toggle-sidebar-btn"></i>
   </div><!-- End Logo -->
+
+
+
+
+
 </header><!-- End Header -->
+
+
 
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
@@ -67,16 +69,16 @@
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a class="nav-link" th:href="@{/forms-layouts}" href="forms-layouts.html">
+      <a class="nav-link" th:href="@{/registration}" href="registration.html">
         <i class="bi bi-grid"></i>
-        <span>Form Layouts</span>
+        <span>Registration</span>
       </a>
     </li><!-- End Forms Nav -->
 
     <li class="nav-item">
-      <a class="nav-link" th:href="@{/tables-data}" href="tables-data.html">
+      <a class="nav-link" th:href="@{/accounts}" href="accounts.html">
         <i class="bi bi-grid"></i>
-        <span>Data Tables</span>
+        <span>Accounts</span>
       </a>
       <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
@@ -85,7 +87,7 @@
           </a>
         </li>
         <li>
-          <a th:href="@{/tables-data}" href="tables-data.html">
+          <a th:href="@{/accounts}" href="accounts.html">
             <i class="bi bi-circle"></i><span>Data Tables</span>
           </a>
         </li>
@@ -94,61 +96,63 @@
 
     <!-- New Transaction Nav Item -->
     <li class="nav-item">
-      <a class="nav-link" th:href="@{/Transaction}" href="transaction.html">
+      <a class="nav-link" th:href="@{/transactions}" href="transactions.html">
         <i class="bi bi-cash"></i> <!-- Example icon, adjust as needed -->
-        <span>Transaction</span>
+        <span>Transactions</span>
       </a>
     </li><!-- End Transaction Nav -->
 
   </ul>
 </aside><!-- End Sidebar-->
 
+
+
 <main id="main" class="main">
+
   <div class="pagetitle">
-    <h1>Make Transaction</h1>
+    <h1>Registration</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="Transaction.html">Home</a></li>
-        <li class="breadcrumb-item">Forms</li>
-        <li class="breadcrumb-item active">Layouts</li>
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+
+        <li class="breadcrumb-item active">Registration</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
   <section class="section">
-    <div class="row">
+    <div class="row justify-content-center">
       <div class="col-lg-6">
+
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Transfer Your Money</h5>
+            <h5 class="card-title">Register Form</h5>
 
             <!-- Horizontal Form -->
             <form>
               <div class="row mb-3">
-                <label for="inputText" class="col-sm-2 col-form-label">Amount</label>
+                <label for="inputName" class="col-sm-2 col-form-label">Banque Name</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputText">
+                  <input type="text" class="form-control" id="inputName">
                 </div>
               </div>
-
-              <!-- Source Select -->
-              <div class="form-group">
-                <label for="sourceSelect">Source</label>
-                <select class="form-select" id="sourceSelect" aria-label="Source">
-                  <option selected="">New York</option>
-                  <option value="1">Oregon</option>
-                  <option value="2">DC</option>
-                </select>
+              <div class="row mb-3">
+                <label for="inputAddress" class="col-sm-2 col-form-label">Banque Address</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputAddress">
+                </div>
               </div>
-
-              <!-- Destination Select -->
-              <div class="form-group">
-                <label for="destinationSelect">Destination</label>
-                <select class="form-select" id="destinationSelect" aria-label="Destination">
-                  <option selected="">New York</option>
-                  <option value="1">Oregon</option>
-                  <option value="2">DC</option>
-                </select>
+              <div class="row mb-3">
+                <label for="inputBalance" class="col-sm-2 col-form-label">Banque Balance</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputBalance">
+                </div>
+              </div><div class="row mb-3">
+              <label for="inputCode" class="col-sm-2 col-form-label">Swift Code</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputCode">
               </div>
+            </div>
+
 
               <div class="text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -158,19 +162,24 @@
 
           </div>
         </div>
+
+
+
       </div>
+
+
     </div>
   </section>
+
 </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
-<footer id="footer" class="footer">
-  <div class="copyright"><strong><span>BanqueOfEgypt</span></strong></div>
-</footer><!-- End Footer -->
+<!-- End Footer -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
+<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/vendor/chart.js/chart.umd.js"></script>
 <script src="assets/vendor/echarts/echarts.min.js"></script>
@@ -184,4 +193,4 @@
 
 
 
-</body></html>
+<svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg><svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg></body></html>
