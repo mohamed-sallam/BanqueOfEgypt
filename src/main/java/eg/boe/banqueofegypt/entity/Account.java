@@ -15,17 +15,15 @@ public class Account {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id = null;
     @Column(name = "name")
-    private String name;
+    private String name = "";
     @Column(name = "address")
-    private String address;
+    private String address = "";
     @Column(name = "swift_code")
-    private String swiftCode;
+    private String swiftCode = "";
     @Column(name = "balance")
-    private String balance;
-    //todo @OneToMany(mappedBy = "account")
-    //todo @JoinColumn(name = " ")
-    //todo private List<Transaction> transactionList;
+    private String balance = "0";
+
 
 }
