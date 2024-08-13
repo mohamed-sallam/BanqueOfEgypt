@@ -24,4 +24,6 @@ public class Account {
     private String swiftCode;
     @Column(name = "balance")
     private String balance;
+    @Column(name = "url")
+    private String url;
 }

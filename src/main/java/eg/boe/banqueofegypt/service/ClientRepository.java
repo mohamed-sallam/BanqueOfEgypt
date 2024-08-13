@@ -1,14 +1,15 @@
 package eg.boe.banqueofegypt.service;
 
-import eg.boe.banqueofegypt.data.Request.CheckBalanceRequest;
-import eg.boe.banqueofegypt.data.Request.DepositMoneyRequest;
-import eg.boe.banqueofegypt.data.Request.WithdrawMoneyRequest;
+import eg.boe.banqueofegypt.data.dto.BalanceResponse;
+import eg.boe.banqueofegypt.data.dto.CheckBalanceRequest;
+import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
+import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
 import eg.boe.banqueofegypt.util.Response;
 
 public interface ClientRepository {
-    Response<?> checkBalance(CheckBalanceRequest request, String url);
+    Response<BalanceResponse> checkBalance(CheckBalanceRequest request, String url);
 
-    Response<?> depositMoney(DepositMoneyRequest request, String url);
+    Response<Void> depositMoney(DepositMoneyRequest request, String url);
 
-    Response<?> withdrawMoney(WithdrawMoneyRequest request, String url);
+    Response<Void> withdrawMoney(WithdrawMoneyRequest request, String url);
 }

@@ -1,4 +1,4 @@
-package eg.boe.banqueofegypt.data.Request;
+package eg.boe.banqueofegypt.data.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
