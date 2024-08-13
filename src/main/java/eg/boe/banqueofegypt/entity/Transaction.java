@@ -1,30 +1,30 @@
 package eg.boe.banqueofegypt.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
 
-import java.math.BigDecimal;
 import java.sql.Date;
+
 @Entity
 @Table(name = "transaction")
-public record Transaction (
-
-   @Id Long id,
-  String payer,
-  String payee,
-  Integer amount,
-  Status status,
-  Date date
-){
-    enum Status{
-        PENDING,
-        SUCCESS,
-        FAIL
-    }
-    
+public record Transaction(
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        Long id,
+        @ManyToOne(cascade = CascadeType.ALL)
+        @JoinColumn(name = "payer_id")
+        Account payer,
+        @ManyToOne(cascade = CascadeType.ALL)
+        @JoinColumn(name = "payee_id")
+        Account payee,
+        String amount,
+        Status status,
+        Date date
+) {
     public Transaction() {
         this(null, null, null, null, null, null);
+    }
+
+    public enum Status {
+        PENDING, SUCCESS, FAIL
     }
 }
