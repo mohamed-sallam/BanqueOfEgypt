@@ -17,13 +17,13 @@
 **Response:**
 
 - `200 OK`: Current balance of bank is sufficient
-- `401 Unauthorized Access`: Indicates that the data entered is invalid.
+- `401 Unauthorized Access`: Indicates that the token entered is invalid.
 
 ```json
 // Example: 200 OK
 {
   "code": 200,
-  "message": "Success",
+  "message": "OK",
   "data": {
     "balance": "100000"
   }
@@ -54,20 +54,82 @@
 
 **Response:**
 
-- `200 OK`: Indicates that the balance has been added .
-- `99993 Invalid Data`: Indicates that the data entered is invalid.
+- `200 OK`: Indicates that the balance has been added.
+- `401 Unauthorized Access`: Indicates that the token entered is invalid.
+- `403 Bad Request`: Indicates that the amount of money is too small.
+```json
+// Example: 200 OK
+{
+  "code": 200,
+  "message": "OK",
+  "data": null
+}
+```
+```json
+// Example: 401 Unauthorized Access
+{
+  "code": 401,
+  "message": "Unauthorized Access",
+  "data": null
+}
+```
+```json
+// Example: 403 Bad Request
+{
+  "code": 403,
+  "message": "Bad Request",
+  "data": null
+}
+```
 
 ## 3. Withdraw Money
 
-**Endpoint:** `/withdrawMoney`
+**Endpoint:** `POST /withdraw`
 
-**Request Type:** `GET`
-
-**Request Parameters:** `amount`
+**Request Parameters:** 
+```json
+{
+  "token": "BOE-0112-XgF0",
+  "amount": "10000"
+}
+```
 
 **Description:** Withdraws the specified amount of money from bank's account.
 
 **Response:**
 
-- `200 OK`: Indicates that the balance has been deducted.
-- `99993 Invalid Data`: Indicates that the data entered is invalid.
+- `200 OK`: Indicates that the balance has been added.
+- `401 Unauthorized Access`: Indicates that the token entered is invalid.
+- `403 Bad Request`: Indicates that the amount of money is not allowed.
+```json
+// Example: 200 OK
+{
+  "code": 200,
+  "message": "OK",
+  "data": null
+}
+```
+```json
+// Example: 401 Unauthorized Access
+{
+  "code": 401,
+  "message": "Unauthorized Access",
+  "data": null
+}
+```
+```json
+// Example: 403 Exceeded the Maximum Amount
+{
+  "code": 403,
+  "message": "Exceeded the Maximum Amount",
+  "data": null
+}
+```
+```json
+// Example: 404 Insufficient Funds
+{
+  "code": 404,
+  "message": "Insufficient Funds",
+  "data": null
+}
+```
