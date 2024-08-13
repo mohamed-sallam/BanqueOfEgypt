@@ -1,4 +1,4 @@
-package eg.boe.banqueofegypt.data.Response;
+package eg.boe.banqueofegypt.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

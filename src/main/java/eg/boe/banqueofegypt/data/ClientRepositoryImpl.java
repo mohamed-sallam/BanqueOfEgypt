@@ -3,12 +3,14 @@ package eg.boe.banqueofegypt.data;
 import eg.boe.banqueofegypt.data.Request.CheckBalanceRequest;
 import eg.boe.banqueofegypt.data.Request.DepositMoneyRequest;
 import eg.boe.banqueofegypt.data.Request.WithdrawMoneyRequest;
-import eg.boe.banqueofegypt.data.Response.Response;
+import eg.boe.banqueofegypt.util.Response;
 import eg.boe.banqueofegypt.service.ClientRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestClient;
 
 @AllArgsConstructor
+@Repository
 public class ClientRepositoryImpl implements ClientRepository {
     private final RestClient restClient = RestClient.create();
 
