@@ -1,10 +1,11 @@
 package eg.boe.banqueofegypt.service;
 
 import eg.boe.banqueofegypt.controller.ClientService;
-import eg.boe.banqueofegypt.data.Request.CheckBalanceRequest;
-import eg.boe.banqueofegypt.data.Request.DepositMoneyRequest;
-import eg.boe.banqueofegypt.data.Request.WithdrawMoneyRequest;
-import eg.boe.banqueofegypt.data.Response.BalanceResponse;
+import eg.boe.banqueofegypt.data.dto.CheckBalanceRequest;
+import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
+import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
+import eg.boe.banqueofegypt.data.dto.BalanceResponse;
+import eg.boe.banqueofegypt.util.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void withdraw(WithdrawMoneyRequest request, String url) {
-        clientRepository.withdrawMoney(request, url);
+        Response<Void> response = clientRepository.withdrawMoney(request, url);
     }
 
     @Override

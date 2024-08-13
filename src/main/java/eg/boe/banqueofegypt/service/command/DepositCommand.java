@@ -1,21 +1,16 @@
 package eg.boe.banqueofegypt.service.command;
 
-import eg.boe.banqueofegypt.data.Request.CheckBalanceRequest;
-import eg.boe.banqueofegypt.data.Request.DepositMoneyRequest;
-import eg.boe.banqueofegypt.data.Request.WithdrawMoneyRequest;
+import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
+import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
 import eg.boe.banqueofegypt.service.ClientRepository;
 import eg.boe.banqueofegypt.util.Command;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class DepositCommand implements Command {
     private final DepositMoneyRequest depositMoneyRequest;
     private final String url;
     private final ClientRepository clientRepository;
-
-    public DepositCommand(ClientRepository repo, DepositMoneyRequest request, String url) {
-        this.clientRepository = repo;
-        this.url = url;
-        this.depositMoneyRequest = request;
-    }
 
     @Override
     public void execute() {

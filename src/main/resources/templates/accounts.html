@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -14,7 +14,8 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +40,7 @@
 
 <body>
 
--- ======= Header ======= -->
+<!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
 
   <div class="d-flex align-items-center justify-content-between">
@@ -50,13 +51,7 @@
     <i class="bi bi-list toggle-sidebar-btn"></i>
   </div><!-- End Logo -->
 
-
-
-
-
 </header><!-- End Header -->
-
-
 
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
@@ -76,7 +71,7 @@
     </li><!-- End Forms Nav -->
 
     <li class="nav-item">
-      <a class="nav-link" th:href="@{/accounts}" href="accounts.html">
+      <a class="nav-link" th:href="@{/getAllAccounts}" href="accounts.html">
         <i class="bi bi-grid"></i>
         <span>Accounts</span>
       </a>
@@ -87,7 +82,7 @@
           </a>
         </li>
         <li>
-          <a th:href="@{/accounts}" href="accounts.html">
+          <a th:href="@{/getAllaccounts}" href="accounts.html">
             <i class="bi bi-circle"></i><span>Data Tables</span>
           </a>
         </li>
@@ -125,18 +120,53 @@
           <div class="card-body">
             <h5 class="card-title">Datatables</h5>
 
-
             <!-- Table with stripped rows -->
-            <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns"><div class="datatable-top">
-              <div class="datatable-dropdown">
+            <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+              <div class="datatable-top">
+                <div class="datatable-dropdown">
 
-              </div>
-              <div class="datatable-search">
+                </div>
+                <div class="datatable-search">
 
+                </div>
               </div>
-            </div>
-              <div class="datatable-container"><table class="table datatable datatable-table"><thead><tr><th data-sortable="true" style="width: 26.849642004773273%;"><button class="datatable-sorter">
-                <b>Banque</b> Name</button></th><th data-sortable="true" style="width: 9.188544152744631%;"><button class="datatable-sorter">Id</button></th><th data-sortable="true" style="width: 28.520286396181383%;" aria-sort="descending" class="datatable-descending"><button class="datatable-sorter">Address</button></th><th data-format="YYYY/DD/MM" data-sortable="true" data-type="date" style="width: 16.94510739856802%;"><button class="datatable-sorter">Balance</button></th></tr></thead><tbody><tr data-index="0"><td>Hermione Dickson</td><td>2785</td><td>Woodstock</td><td>2001/22/03</td></tr><tr data-index="1"><td>Hop Bass</td><td>1024</td><td>Westerlo</td><td>2012/25/09</td></tr><tr data-index="2"><td>Hammett Gordon</td><td>8101</td><td>Wah</td><td>1998/06/09</td></tr><tr data-index="3"><td>Vielka Olsen</td><td>3745</td><td>Vrasene</td><td>2016/08/01</td></tr><tr data-index="4"><td>Malachi Mejia</td><td>7133</td><td>Vorst</td><td>2007/25/04</td></tr><tr data-index="5"><td>Stewart Stephenson</td><td>5350</td><td>Villa Faraldi</td><td>2003/05/07</td></tr><tr data-index="6"><td>Berk Johnston</td><td>4532</td><td>Vergnies</td><td>2016/23/02</td></tr><tr data-index="7"><td>Mark Brock</td><td>3310</td><td>Veenendaal</td><td>2006/08/09</td></tr><tr data-index="8"><td>Alisa Horn</td><td>9853</td><td>Ucluelet</td><td>2007/01/11</td></tr><tr data-index="9"><td>Lani Lawrence</td><td>8501</td><td>Turnhout</td><td>2008/07/05</td></tr></tbody></table></div>
+              <div class="datatable-container">
+                <table class="table datatable datatable-table">
+                  <thead>
+                  <tr>
+                    <th data-sortable="true" style="width: 26.849642004773273%;">
+                      <button class="datatable-sorter">
+                        <b>Banque</b> Name
+                      </button>
+                    </th>
+                    <th data-sortable="true" style="width: 9.188544152744631%;">
+                      <button class="datatable-sorter">Id</button>
+                    </th>
+                    <th data-sortable="true" style="width: 28.520286396181383%;"
+                        aria-sort="descending" class="datatable-descending">
+                      <button class="datatable-sorter">Address</button>
+                    </th>
+                    <th data-format="YYYY/DD/MM" data-sortable="true" data-type="date"
+                        style="width: 16.94510739856802%;">
+                      <button class="datatable-sorter">Swift Code</button>
+                    </th>
+                    <th data-format="YYYY/DD/MM" data-sortable="true" data-type="date"
+                        style="width: 16.94510739856802%;">
+                      <button class="datatable-sorter">Balance</button>
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="account : ${accounts}">
+                    <td th:text="${account.name}"></td>
+                    <td th:text="${account.id}"></td>
+                    <td th:text="${account.address}"></td>
+                    <td th:text="${account.swiftCode}"></td>
+                    <td th:text="${account.balance}"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
             <!-- End Table with stripped rows -->
 
@@ -152,7 +182,8 @@
 <!-- ======= Footer ======= -->
 <!-- End Footer -->
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -167,6 +198,11 @@
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
 
-
-
-<svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg></body></html>
+<svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1"
+     style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;">
+  <defs id="SvgjsDefs1002"></defs>
+  <polyline id="SvgjsPolyline1003" points="0,0"></polyline>
+  <path id="SvgjsPath1004" d="M0 0 "></path>
+</svg>
+</body>
+</html>

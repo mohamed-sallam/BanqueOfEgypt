@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class TransactionController {
     private final TransactionService transactionService;
 
-    @GetMapping
+    @GetMapping("/transactions")
     public String getAllTransaction(Model model) {
         model.addAttribute("transactions", transactionService.getAllTransactions());
         //TODO REPLACE WITH CORRECT HTML FILE

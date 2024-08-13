@@ -1,43 +1,53 @@
 package eg.boe.banqueofegypt.data;
 
-import eg.boe.banqueofegypt.data.Request.CheckBalanceRequest;
-import eg.boe.banqueofegypt.data.Request.DepositMoneyRequest;
-import eg.boe.banqueofegypt.data.Request.WithdrawMoneyRequest;
+import eg.boe.banqueofegypt.data.dto.CheckBalanceRequest;
+import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
+import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
+import eg.boe.banqueofegypt.data.dto.BalanceResponse;
 import eg.boe.banqueofegypt.util.Response;
 import eg.boe.banqueofegypt.service.ClientRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestTemplate;
 
 @AllArgsConstructor
 @Repository
 public class ClientRepositoryImpl implements ClientRepository {
-    private final RestClient restClient = RestClient.create();
+    private final RestTemplate restTemplate = new RestTemplate();
 
-    public Response<?> checkBalance(CheckBalanceRequest request, String url) {
-        return restClient
-                .post()
-                .uri(url + "/balance")
-                .body(request)
-                .retrieve()
-                .body(Response.class);
+    @Override
+    public Response<BalanceResponse> checkBalance(CheckBalanceRequest request, String url) {
+        HttpEntity<CheckBalanceRequest> entity = new HttpEntity<>(request);
+        return restTemplate.exchange(
+                url + "/balance",
+                HttpMethod.POST,
+                entity,
+                new ParameterizedTypeReference<Response<BalanceResponse>>() {}
+        ).getBody();
     }
 
-    public Response<?> depositMoney(DepositMoneyRequest request, String url) {
-        return restClient
-                .post()
-                .uri(url + "/deposit")
-                .body(request)
-                .retrieve()
-                .body(Response.class);
+    @Override
+    public Response<Void> depositMoney(DepositMoneyRequest request, String url) {
+        HttpEntity<DepositMoneyRequest> entity = new HttpEntity<>(request);
+        return restTemplate.exchange(
+                url + "/deposit",
+                HttpMethod.POST,
+                entity,
+                new ParameterizedTypeReference<Response<Void>>() {}
+        ).getBody();
     }
 
-    public Response<?> withdrawMoney(WithdrawMoneyRequest request, String url) {
-        return restClient
-                .post()
-                .uri(url + "/withdraw")
-                .body(request)
-                .retrieve()
-                .body(Response.class);
+    @Override
+    public Response<Void> withdrawMoney(WithdrawMoneyRequest request, String url) {
+        HttpEntity<WithdrawMoneyRequest> entity = new HttpEntity<>(request);
+        return restTemplate.exchange(
+                url + "/withdraw",
+                HttpMethod.POST,
+                entity,
+                new ParameterizedTypeReference<Response<Void>>() {}
+        ).getBody();
     }
 }

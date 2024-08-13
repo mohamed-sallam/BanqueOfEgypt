@@ -38,4 +38,6 @@ public class Account {
     @Pattern(regexp = "^[0-9]*$", message = "Balance must be a number")
     @PositiveOrZero(message = "Balance must be positive or zero")
     private String balance;
+    @Column(name = "url")
+    private String url;
 }
