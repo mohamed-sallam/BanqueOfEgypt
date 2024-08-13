@@ -15,15 +15,13 @@ public class Account {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id = null;
+    private Long id;
     @Column(name = "name")
-    private String name = "";
+    private String name;
     @Column(name = "address")
-    private String address = "";
+    private String address;
     @Column(name = "swift_code")
-    private String swiftCode = "";
+    private String swiftCode;
     @Column(name = "balance")
-    private String balance = "0";
-
-
+    private String balance;
 }
