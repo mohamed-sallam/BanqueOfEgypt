@@ -16,15 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AccountController {
     private final AccountService accountService;
-
-    @GetMapping("/accounts")
-    public String accounts(Model model) {
-        model.addAttribute("account", new AccountDto());
-        return "registration";
-    }
-    //todo replace return value to page name
     @GetMapping("/getAllAccounts")
-    public String getAllAccounts() {
+    public String getAllAccounts(Model model) {
+        model.addAttribute("accounts", accountService.getAllAccounts());
         return "accounts";
     }
     @PostMapping("/createAccount")
@@ -32,5 +26,13 @@ public class AccountController {
         accountService.addAccount(account);
         model.addAttribute("accounts", accountService.getAllAccounts());
         return "registration";
+    }
+    @GetMapping("/registration")
+    public String moveToRegistration(Model model) {
+        return "registration";
+    }
+    @GetMapping("/")
+    public String moveToIndex(Model model) {
+        return "index";
     }
 }
