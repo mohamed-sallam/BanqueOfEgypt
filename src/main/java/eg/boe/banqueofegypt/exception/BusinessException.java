@@ -1,4 +1,4 @@
 package eg.boe.banqueofegypt.exception;
 
-public class BussinessException {
+public class BusinessException {
 }

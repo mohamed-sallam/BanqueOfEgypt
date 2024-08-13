@@ -13,5 +13,5 @@ public class AccountDto {
     private String address;
     private String swiftCode;
     private String balance;
-    //todo private List<TransactionPresentationDto> transactionDtoList;
+    //todo private List<TransactionDto> transactionDtoList;
 }
