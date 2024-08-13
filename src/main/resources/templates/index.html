@@ -748,21 +748,21 @@
 <aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="/">
+      <a class="nav-link" th:href="@{/}" href="index.html">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a class="nav-link" href="/registration">
+      <a class="nav-link" th:href="@{/registration}" href="registration.html">
         <i class="bi bi-grid"></i>
         <span>Registration</span>
       </a>
     </li><!-- End Forms Nav -->
 
     <li class="nav-item">
-      <a class="nav-link" href="/accounts">
+      <a class="nav-link" th:href="@{/getAllAccounts}" href="accounts.html">
         <i class="bi bi-grid"></i>
         <span>Accounts</span>
       </a>
@@ -773,8 +773,8 @@
           </a>
         </li>
         <li>
-          <a href="/accounts">
-            <i class="bi bi-circle"></i><span>Data Tables</span>
+          <a th:href="@{/getAllaccounts}" href="accounts.html">
+          <i class="bi bi-circle"></i><span>Data Tables</span>
           </a>
         </li>
       </ul>
@@ -782,7 +782,7 @@
 
     <!-- New Transaction Nav Item -->
     <li class="nav-item">
-      <a class="nav-link" href="/transactions">
+      <a class="nav-link" th:href="@{/transactions}" href="transactions.html">
         <i class="bi bi-cash"></i> <!-- Example icon, adjust as needed -->
         <span>Transactions</span>
       </a>
