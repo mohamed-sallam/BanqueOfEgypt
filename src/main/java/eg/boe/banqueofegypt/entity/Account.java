@@ -24,8 +24,4 @@ public class Account {
     private String swiftCode;
     @Column(name = "balance")
     private String balance;
-    //todo @OneToMany(mappedBy = "account")
-    //todo @JoinColumn(name = " ")
-    //todo private List<Transaction> transactionList;
-
 }
