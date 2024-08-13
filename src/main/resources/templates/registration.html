@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-  <meta charset="ISO-8859-1">
+  <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Forms / Layouts - NiceAdmin Bootstrap Template</title>
@@ -9,77 +9,120 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link th:href="@{/assets/img/favicon.png}" rel="icon">
-  <link th:href="@{/assets/img/apple-touch-icon.png}" rel="apple-touch-icon">
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-  <link th:href="@{/assets/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
-  <link th:href="@{/assets/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">
-  <link th:href="@{/assets/vendor/quill/quill.snow.css}" rel="stylesheet">
-  <link th:href="@{/assets/vendor/quill/quill.bubble.css}" rel="stylesheet">
-  <link th:href="@{/assets/vendor/remixicon/remixicon.css}" rel="stylesheet">
-  <link th:href="@{/assets/vendor/simple-datatables/style.css}" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link th:href="@{/assets/css/style.css}" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Updated: Apr 20 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
 
 <body>
 
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
+
   <div class="d-flex align-items-center justify-content-between">
     <a href="/" class="logo d-flex align-items-center">
-      <img th:src="@{/assets/img/logo.png}" alt="">
+      <img src="assets/img/logo.png" alt="">
       <span class="d-none d-lg-block">Banque of Egypt</span>
     </a>
     <i class="bi bi-list toggle-sidebar-btn"></i>
-  </div>
+  </div><!-- End Logo -->
+
+
+
+
+
 </header><!-- End Header -->
+
+
 
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
-      <a class="nav-link " href="/">
+      <a class="nav-link" th:href="@{/}" href="index.html">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
     </li><!-- End Dashboard Nav -->
+
     <li class="nav-item">
-      <a class="nav-link " th:href="@{/forms-layouts}">
+      <a class="nav-link" th:href="@{/registration}" href="registration.html">
         <i class="bi bi-grid"></i>
-        <span>Form Layouts</span>
+        <span>Registration</span>
       </a>
     </li><!-- End Forms Nav -->
+
     <li class="nav-item">
-      <a class="nav-link " href="/tables-data">
+      <a class="nav-link" th:href="@{/accounts}" href="accounts.html">
         <i class="bi bi-grid"></i>
-        <span>Data Tables</span>
+        <span>Accounts</span>
       </a>
+      <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="tables-general.html">
+            <i class="bi bi-circle"></i><span>General Tables</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/accounts}" href="accounts.html">
+            <i class="bi bi-circle"></i><span>Data Tables</span>
+          </a>
+        </li>
+      </ul>
     </li><!-- End Tables Nav -->
+
+    <!-- New Transaction Nav Item -->
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/transactions}" href="transactions.html">
+        <i class="bi bi-cash"></i> <!-- Example icon, adjust as needed -->
+        <span>Transactions</span>
+      </a>
+    </li><!-- End Transaction Nav -->
+
   </ul>
 </aside><!-- End Sidebar-->
 
+
+
 <main id="main" class="main">
+
   <div class="pagetitle">
-    <h1>Form Layouts</h1>
+    <h1>Registration</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active">Form Layouts</li>
+
+        <li class="breadcrumb-item active">Registration</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
-
   <section class="section">
     <div class="row justify-content-center">
       <div class="col-lg-6">
+
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Register Form</h5>
@@ -122,22 +165,35 @@
 
           </div>
         </div>
+
+
+
       </div>
+
+
     </div>
   </section>
+
 </main><!-- End #main -->
 
+<!-- ======= Footer ======= -->
+<!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
 <!-- Vendor JS Files -->
-<script th:src="@{/assets/vendor/apexcharts/apexcharts.min.js}"></script>
-<script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/assets/vendor/chart.js/chart.umd.js}"></script>
-<script th:src="@{/assets/vendor/echarts/echarts.min.js}"></script>
-<script th:src="@{/assets/vendor/quill/quill.js}"></script>
-<script th:src="@{/assets/vendor/simple-datatables/simple-datatables.js}"></script>
-<script th:src="@{/assets/vendor/tinymce/tinymce.min.js}"></script>
-<script th:src="@{/assets/vendor/php-email-form/validate.js}"></script>
+<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/chart.js/chart.umd.js"></script>
+<script src="assets/vendor/echarts/echarts.min.js"></script>
+<script src="assets/vendor/quill/quill.js"></script>
+<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
-<script th:src="@{/assets/js/main.js}"></script>
-</body>
-</html>
+<script src="assets/js/main.js"></script>
+
+
+
+<svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg><svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg></body></html>
