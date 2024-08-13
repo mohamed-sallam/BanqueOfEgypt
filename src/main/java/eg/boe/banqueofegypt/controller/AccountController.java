@@ -16,16 +16,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Controller
 public class AccountController {
     private final AccountService accountService;
+
     //todo replace return value to page name
     @PostMapping("/addAccount")
-    public String addAccount(@RequestBody AccountDto accountDto){
+    public String addAccount(@RequestBody AccountDto accountDto) {
         accountService.addAccount(accountDto);
         return "redirect:/";
     }
 
     //todo replace return value to page name
- @GetMapping("/getAllAccounts")
-    public String getAllAccounts(Model model){
+    @GetMapping("/getAllAccounts")
+    public String getAllAccounts(Model model) {
         model.addAttribute("accounts", accountService.getAllAccounts());
         return "accounts";
     }

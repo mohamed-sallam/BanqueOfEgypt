@@ -12,7 +12,7 @@ import java.sql.Date;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TransactionDto {
+public class TransactionRetrievalDto {
     private Long id;
     private AccountDto payer;
     private AccountDto payee;

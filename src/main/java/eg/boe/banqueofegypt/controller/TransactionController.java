@@ -1,6 +1,6 @@
 package eg.boe.banqueofegypt.controller;
 
-import eg.boe.banqueofegypt.model.dto.TransactionDto;
+import eg.boe.banqueofegypt.model.dto.TransactionRetrievalDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -25,7 +25,7 @@ public class TransactionController {
     }
 
     @PostMapping
-    public String getAllTransaction(@ModelAttribute TransactionDto transaction, Model model) {
+    public String getAllTransaction(@ModelAttribute TransactionRetrievalDto transaction, Model model) {
         //TODO DO Transaction
         model.addAttribute("transactions", transactionService.getAllTransactions());
         //TODO REPLACE WITH CORRECT HTML FILE

@@ -1,11 +1,14 @@
 package eg.boe.banqueofegypt.controller;
 
-import eg.boe.banqueofegypt.model.dto.TransactionDto;
+import eg.boe.banqueofegypt.model.dto.TransactionPreservationDto;
+import eg.boe.banqueofegypt.model.dto.TransactionRetrievalDto;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface TransactionService {
-    List<TransactionDto> getAllTransactions();
+    List<TransactionRetrievalDto> getAllTransactions();
 
-    TransactionDto transact(TransactionDto transactionDto);
+    @Transactional
+    TransactionRetrievalDto transact(TransactionPreservationDto transactionRetrievalDto);
 }
