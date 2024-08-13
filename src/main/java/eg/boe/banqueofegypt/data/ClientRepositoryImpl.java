@@ -1,15 +1,18 @@
 package eg.boe.banqueofegypt.data;
 
 import eg.boe.banqueofegypt.data.Request.CheckBalanceRequest;
+import eg.boe.banqueofegypt.data.Request.DepositMoneyRequest;
+import eg.boe.banqueofegypt.data.Request.WithdrawMoneyRequest;
 import eg.boe.banqueofegypt.data.Response.Response;
+import eg.boe.banqueofegypt.service.ClientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.client.RestClient;
 
 @AllArgsConstructor
-public class ClientRepositoryImpl {
-    RestClient restClient = RestClient.create();
+public class ClientRepositoryImpl implements ClientRepository {
+    private final RestClient restClient = RestClient.create();
 
-    Response<?> checkBalance(CheckBalanceRequest request, String url) {
+    public Response<?> checkBalance(CheckBalanceRequest request, String url) {
         return restClient
                 .post()
                 .uri(url + "/balance")
@@ -18,7 +21,7 @@ public class ClientRepositoryImpl {
                 .body(Response.class);
     }
 
-    Response<?> depositMoney(CheckBalanceRequest request, String url) {
+    public Response<?> depositMoney(DepositMoneyRequest request, String url) {
         return restClient
                 .post()
                 .uri(url + "/deposit")
@@ -27,7 +30,7 @@ public class ClientRepositoryImpl {
                 .body(Response.class);
     }
 
-    Response<?> withdrawMoney(CheckBalanceRequest request, String url) {
+    public Response<?> withdrawMoney(WithdrawMoneyRequest request, String url) {
         return restClient
                 .post()
                 .uri(url + "/withdraw")
