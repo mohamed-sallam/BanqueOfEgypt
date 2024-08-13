@@ -1,23 +1,22 @@
 package eg.boe.banqueofegypt.model.dto;
 
-import eg.boe.banqueofegypt.entity.Account;
-import jakarta.persistence.*;
+import eg.boe.banqueofegypt.entity.Transaction;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Date;
 
-public record TransactionDto(
-        Long id,
-        AccountDto payer,
-        AccountDto payee,
-        String amount,
-        Status status,
-        Date date
-) {
-    public TransactionDto() {
-        this(null, null, null, null, null, null);
-    }
-
-    public enum Status {
-        PENDING, SUCCESS, FAIL
-    }
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class TransactionDto {
+    private Long id;
+    private AccountDto payer;
+    private AccountDto payee;
+    private String amount;
+    private Transaction.Status status;
+    private Date date;
 }

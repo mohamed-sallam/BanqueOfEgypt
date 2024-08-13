@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 @Controller
 public class TransactionController {
-
     private final TransactionService transactionService;
 
     @GetMapping
@@ -24,6 +23,7 @@ public class TransactionController {
         //TODO REPLACE WITH CORRECT HTML FILE
         return "transactions";
     }
+
     @PostMapping
     public String getAllTransaction(@ModelAttribute TransactionDto transaction, Model model) {
         //TODO DO Transaction

@@ -1,7 +1,6 @@
 package eg.boe.banqueofegypt.controller;
 
 import eg.boe.banqueofegypt.model.dto.AccountDto;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;

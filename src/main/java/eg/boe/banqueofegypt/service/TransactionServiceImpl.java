@@ -1,7 +1,6 @@
 package eg.boe.banqueofegypt.service;
 
 import eg.boe.banqueofegypt.controller.TransactionService;
-import eg.boe.banqueofegypt.db.AccountRepository;
 import eg.boe.banqueofegypt.db.TransactionRepository;
 import eg.boe.banqueofegypt.entity.Transaction;
 import eg.boe.banqueofegypt.model.dto.TransactionDto;

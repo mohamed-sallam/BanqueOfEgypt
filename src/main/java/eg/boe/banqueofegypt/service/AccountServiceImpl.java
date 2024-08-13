@@ -11,13 +11,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Getter
-@Setter
+
 @RequiredArgsConstructor
 @Service
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     private final ModelMapper modelMapper;
+
     @Override
     public List<AccountDto> getAllAccounts() {
         return accountRepository.
@@ -28,7 +28,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDto addAccount(AccountDto accountDto) {
-        Account account =modelMapper.map(accountDto, Account.class);
+        Account account = modelMapper.map(accountDto, Account.class);
         accountRepository.save(account);
         return modelMapper.map(account, AccountDto.class);
     }
