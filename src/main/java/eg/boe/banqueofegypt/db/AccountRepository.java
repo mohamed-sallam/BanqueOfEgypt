@@ -1,4 +1,7 @@
 package eg.boe.banqueofegypt.db;
 
-public interface AccountRepository {
+import eg.boe.banqueofegypt.entity.Account;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AccountRepository extends JpaRepository<Account,Long> {
 }
