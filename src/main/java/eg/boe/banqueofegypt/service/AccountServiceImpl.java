@@ -1,12 +1,9 @@
 package eg.boe.banqueofegypt.service;
 
 import eg.boe.banqueofegypt.controller.AccountService;
-import eg.boe.banqueofegypt.db.AccountRepository;
 import eg.boe.banqueofegypt.entity.Account;
 import eg.boe.banqueofegypt.model.dto.AccountDto;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package eg.boe.banqueofegypt.db;
+package eg.boe.banqueofegypt.service;
 
 import eg.boe.banqueofegypt.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
