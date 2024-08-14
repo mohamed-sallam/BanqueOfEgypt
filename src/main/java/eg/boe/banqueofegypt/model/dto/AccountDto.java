@@ -13,5 +13,6 @@ public class AccountDto {
     private String address;
     private String swiftCode;
     private String balance;
+    private String url;
     //todo private List<TransactionDto> transactionDtoList;
 }
