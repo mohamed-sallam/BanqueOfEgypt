@@ -29,6 +29,7 @@ public class AccountController {
     }
     @GetMapping("/registration")
     public String moveToRegistration(Model model) {
+        model.addAttribute("account", new AccountDto());
         return "registration";
     }
     @GetMapping("/")
