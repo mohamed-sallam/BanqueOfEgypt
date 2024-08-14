@@ -5,7 +5,8 @@ import java.util.Map;
 public enum Status {
     PENDING(0), SUCCESS(200),
     INSUFFICIENT_FUNDS(80090), INVALID_DATA(99993),
-    DEST_TIMEOUT(80091), SRC_TIMEOUT(80092);
+    DEST_TIMEOUT(80091), SRC_TIMEOUT(80092),
+    FAILED(404);
 
     public final static Map<Integer, String> codeMessageMapper = Map.of(
             PENDING.code, "Pending",

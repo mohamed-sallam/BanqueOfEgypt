@@ -18,6 +18,6 @@ public class TransactionRetrievalDto {
     private AccountDto payer;
     private AccountDto payee;
     private String amount;
-//    private Status status;
+    private Integer status;
     private Date date;
 }

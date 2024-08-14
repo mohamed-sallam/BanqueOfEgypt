@@ -39,7 +39,7 @@ public class Transaction {
 
 //    @NotNull(message = "Status is required")
 //    @Enumerated(EnumType.STRING)
-//    private Status status;
+    private Integer status;
 
     @NotNull(message = "Date is required")
     @PastOrPresent(message = "Date must be in the past or present")
