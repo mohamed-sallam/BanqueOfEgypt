@@ -1,5 +1,6 @@
 package eg.boe.banqueofegypt.model.dto;
 
+import eg.boe.banqueofegypt.entity.Status;
 import eg.boe.banqueofegypt.entity.Transaction;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,6 +18,6 @@ public class TransactionRetrievalDto {
     private AccountDto payer;
     private AccountDto payee;
     private String amount;
-    private Transaction.Status status;
+//    private Status status;
     private Date date;
 }
