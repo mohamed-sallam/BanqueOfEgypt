@@ -17,7 +17,7 @@ public class Account {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Pattern(regexp = "^[0-9]*$", message = "Id must be a number")
+//    @Pattern(regexp = "^[0-9]*$", message = "Id must be a number")
     private Long id;
 
     @Column(name = "name")
@@ -25,12 +25,12 @@ public class Account {
     private String name;
 
     @Column(name = "address")
-    @Pattern(regexp = "^[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+$", message = "Invalid address")
+//    @Pattern(regexp = "^[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+$", message = "Invalid address")
     private String address;
 
     @Column(name = "swift_code")
     @NotNull(message = "Swift code is required")
-    @Pattern(regexp = "^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$", message = "Invalid swift code")
+//    @Pattern(regexp = "^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$", message = "Invalid swift code")
     private String swiftCode;
 
     @Column(name = "balance")
