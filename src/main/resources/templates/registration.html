@@ -59,35 +59,37 @@
 
 
 <!-- ======= Sidebar ======= -->
+<!-- ======= Sidebar ======= -->
+<!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
-      <a class="nav-link" th:href="@{/}" href="index.html">
+      <a class="nav-link" href="/dashboard">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a class="nav-link" th:href="@{/registration}" href="registration.html">
+      <a class="nav-link" href="/registration">
         <i class="bi bi-grid"></i>
         <span>Registration</span>
       </a>
     </li><!-- End Forms Nav -->
 
     <li class="nav-item">
-      <a class="nav-link" th:href="@{/accounts}" href="accounts.html">
+      <a class="nav-link" href="/allUsers">
         <i class="bi bi-grid"></i>
         <span>Accounts</span>
       </a>
       <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
-          <a href="tables-general.html">
+          <a th:href="@{/transactions}">
             <i class="bi bi-circle"></i><span>General Tables</span>
           </a>
         </li>
         <li>
-          <a th:href="@{/getAllAccounts}" href="accounts.html">
+          <a href="/accounts">
             <i class="bi bi-circle"></i><span>Data Tables</span>
           </a>
         </li>
@@ -96,7 +98,7 @@
 
     <!-- New Transaction Nav Item -->
     <li class="nav-item">
-      <a class="nav-link" th:href="@{/transactions}" href="transactions.html">
+      <a class="nav-link" href="/createTransaction">
         <i class="bi bi-cash"></i> <!-- Example icon, adjust as needed -->
         <span>Transactions</span>
       </a>
@@ -104,8 +106,6 @@
 
   </ul>
 </aside><!-- End Sidebar-->
-
-
 
 <main id="main" class="main">
 
@@ -132,7 +132,7 @@
               <div class="row mb-3">
                 <label th:for="inputName" class="col-sm-2 col-form-label">Bank Name</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" th:id="inputName" th:field="*{name}">
+                  <input type="text" class="form-control" id="inputName" th:field="*{name}">
                 </div>
               </div>
 
@@ -156,7 +156,12 @@
                   <input th:type="text" th:class="form-control" th:id="inputSwiftCode" th:field="*{swiftCode}">
                 </div>
               </div>
-
+              <div class="row mb-3">
+                <label th:for="inputUrl" class="col-sm-2 col-form-label">Url</label>
+                <div th:class="col-sm-10">
+                  <input th:type="text" th:class="form-control" th:id="inputUrl" th:field="*{url}">
+                </div>
+              </div>
               <div class="text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <button type="reset" class="btn btn-secondary">Reset</button>
