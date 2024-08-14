@@ -50,8 +50,8 @@ public class TransactionServiceImpl implements TransactionService {
         transaction.setId(0L);
         transaction.setStatus(PENDING.code);
         System.out.println(transaction.toString());
-        transactionRepository.add(transaction);
-        transaction = transactionRepository.findById(transactionRepository.getLastInsertId()).get();
+        transaction = transactionRepository.save(transaction);
+        transaction = transactionRepository.findById(transaction.getId()).get();
         System.out.println(transaction.toString());
         BalanceResponse balanceResponse;
         try {
@@ -60,18 +60,18 @@ public class TransactionServiceImpl implements TransactionService {
             );
         } catch (BusinessException e) {
             transaction.setStatus(INVALID_DATA.code);
-            transactionRepository.add(transaction);
+            transactionRepository.save(transaction);
             throw e;
         } catch (Exception e) {
             transaction.setStatus(SRC_TIMEOUT.code);
-            transactionRepository.add(transaction);
+            transactionRepository.save(transaction);
             e.printStackTrace();
             throw new BusinessException(408, "Source timeout");
         }
 
-        if (Integer.parseInt(balanceResponse.getBalance()) < Integer.parseInt(transaction.getAmount())) {
+        if (Float.parseFloat(balanceResponse.getBalance()) < Float.parseFloat(transaction.getAmount())) {
             transaction.setStatus(INSUFFICIENT_FUNDS.code);
-            transactionRepository.add(transaction);
+            transactionRepository.save(transaction);
             throw new BusinessException(403, "Insufficient funds");
         }
 
@@ -89,16 +89,16 @@ public class TransactionServiceImpl implements TransactionService {
             stack.execute();
         } catch (BusinessException e) {
             transaction.setStatus(INVALID_DATA.code);
-            transactionRepository.add(transaction);
+            transactionRepository.save(transaction);
             throw e;
         } catch (Exception e) {
             transaction.setStatus(FAILED.code);
-            transactionRepository.add(transaction);
+            transactionRepository.save(transaction);
             throw new BusinessException(500, "Something went wrong!");
         }
 
         transaction.setStatus(SUCCESS.code);
-        transactionRepository.add(transaction);
+        transactionRepository.save(transaction);
         return modelMapper.map(transaction, TransactionRetrievalDto.class);
     }
 }

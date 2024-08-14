@@ -7,6 +7,7 @@ import lombok.*;
 import java.sql.Date;
 import java.util.Map;
 
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -20,12 +21,12 @@ public class Transaction {
 //    @Pattern(regexp = "^[0-9]*$", message = "Id must be a number")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "payer_id")
 //    @NotNull(message = "Payer is required")
     private Account payer;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "payee_id")
 //    @NotNull(message = "Payee is required")
     private Account payee;
@@ -37,7 +38,7 @@ public class Transaction {
 
 //    @NotNull(message = "Status is required")
 //    @Enumerated(EnumType.STRING)
-    private Integer status;
+    private Long status;
 
 //    @NotNull(message = "Date is required")
 //    @PastOrPresent(message = "Date must be in the past or present")
