@@ -9,6 +9,5 @@ import java.util.List;
 public interface TransactionService {
     List<TransactionRetrievalDto> getAllTransactions();
 
-    @Transactional
     TransactionRetrievalDto transact(TransactionPreservationDto transactionRetrievalDto);
 }
