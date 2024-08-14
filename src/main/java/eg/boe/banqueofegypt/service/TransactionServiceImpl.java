@@ -6,6 +6,7 @@ import eg.boe.banqueofegypt.data.dto.BalanceResponse;
 import eg.boe.banqueofegypt.data.dto.CheckBalanceRequest;
 import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
 import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
+import eg.boe.banqueofegypt.entity.Status;
 import eg.boe.banqueofegypt.entity.Transaction;
 import eg.boe.banqueofegypt.exception.BusinessException;
 import eg.boe.banqueofegypt.model.dto.TransactionPreservationDto;
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static eg.boe.banqueofegypt.entity.Status.*;
 
 @RequiredArgsConstructor
 @Repository
@@ -37,7 +40,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Transactional
     public TransactionRetrievalDto transact(TransactionPreservationDto transactionPreservationDto) {
         Transaction transaction = modelMapper.map(transactionPreservationDto, Transaction.class);
-        transaction.setStatus(Transaction.Status.PENDING);
+        transaction.setStatus(PENDING.code);
         transaction = transactionRepository.save(transaction);
         BalanceResponse balanceResponse;
         try {
@@ -45,17 +48,17 @@ public class TransactionServiceImpl implements TransactionService {
                     new CheckBalanceRequest(TOKEN), transaction.getPayer().getUrl()
             );
         } catch (BusinessException e) {
-            transaction.setStatus(Transaction.Status.INVALID_DATA);
+//            transaction.setStatus(Transaction.Status.INVALID_DATA);
             transactionRepository.save(transaction);
             throw e;
         } catch (Exception e) {
-            transaction.setStatus(Transaction.Status.SRC_TIMEOUT);
+            transaction.setStatus(SRC_TIMEOUT.code);
             transactionRepository.save(transaction);
             throw new BusinessException(408, "Source timeout");
         }
 
         if (Integer.parseInt(balanceResponse.getBalance()) < Integer.parseInt(transaction.getAmount())) {
-            transaction.setStatus(Transaction.Status.INSUFFICIENT_FUNDS);
+            transaction.setStatus(INSUFFICIENT_FUNDS.code);
             transactionRepository.save(transaction);
             throw new BusinessException(403, "Insufficient funds");
         }
@@ -73,16 +76,16 @@ public class TransactionServiceImpl implements TransactionService {
         try {
             stack.execute();
         } catch (BusinessException e) {
-            transaction.setStatus(Transaction.Status.INVALID_DATA);
+            transaction.setStatus(INVALID_DATA.code);
             transactionRepository.save(transaction);
             throw e;
         } catch (Exception e) {
-            transaction.setStatus(Transaction.Status.FAILED);
+            transaction.setStatus(FAILED.code);
             transactionRepository.save(transaction);
             throw new BusinessException(500, "`Something went wrong!`");
         }
 
-        transaction.setStatus(Transaction.Status.SUCCESS);
+        transaction.setStatus(SUCCESS.code);
         return modelMapper.map(transactionRepository.save(transaction), TransactionRetrievalDto.class);
     }
 }
