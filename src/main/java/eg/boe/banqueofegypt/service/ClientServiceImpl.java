@@ -1,10 +1,14 @@
 package eg.boe.banqueofegypt.service;
 
 import eg.boe.banqueofegypt.controller.ClientService;
+import eg.boe.banqueofegypt.data.dto.BalanceResponse;
 import eg.boe.banqueofegypt.data.dto.CheckBalanceRequest;
 import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
 import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
-import eg.boe.banqueofegypt.data.dto.BalanceResponse;
+import eg.boe.banqueofegypt.exception.BusinessException;
+import eg.boe.banqueofegypt.service.command.DepositCommand;
+import eg.boe.banqueofegypt.service.command.WithdrawCommand;
+import eg.boe.banqueofegypt.util.Command;
 import eg.boe.banqueofegypt.util.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,17 +19,19 @@ public class ClientServiceImpl implements ClientService {
     private final ClientRepository clientRepository;
 
     @Override
-    public void deposit(DepositMoneyRequest request, String url) {
-        clientRepository.depositMoney(request, url);
+    public Command deposit(DepositMoneyRequest request, String url) {
+        return new DepositCommand(request, url, clientRepository);
     }
 
     @Override
-    public void withdraw(WithdrawMoneyRequest request, String url) {
-        Response<Void> response = clientRepository.withdrawMoney(request, url);
+    public Command withdraw(WithdrawMoneyRequest request, String url) {
+        return new WithdrawCommand(request, url, clientRepository);
     }
 
     @Override
     public BalanceResponse getBalance(CheckBalanceRequest request, String url) {
-        return (BalanceResponse) (clientRepository.checkBalance(request, url).getData());
+        Response<BalanceResponse> response = clientRepository.checkBalance(request, url);
+        if (response.getCode() != 200) throw new BusinessException(response.getCode(), response.getMessage());
+        return response.getData();
     }
 }

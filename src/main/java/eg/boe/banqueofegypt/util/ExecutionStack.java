@@ -3,8 +3,8 @@ package eg.boe.banqueofegypt.util;
 import java.util.Stack;
 
 public class ExecutionStack {
-    private Stack<Command> toExecute = new Stack<>();
-    private Stack<Command> done = new Stack<>();
+    private final Stack<Command> toExecute = new Stack<>();
+    private final Stack<Command> done = new Stack<>();
 
     public void push(Command command) {
         toExecute.push(command);
@@ -12,8 +12,10 @@ public class ExecutionStack {
 
     public void execute() {
         try {
-            for (Command command : toExecute)
+            for (Command command : toExecute) {
                 command.execute();
+                done.push(command);
+            }
         } catch (Exception e) {
             undo();
             toExecute.clear();

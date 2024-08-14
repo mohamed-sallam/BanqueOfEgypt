@@ -2,11 +2,15 @@ package eg.boe.banqueofegypt.service;
 
 import eg.boe.banqueofegypt.controller.ClientService;
 import eg.boe.banqueofegypt.controller.TransactionService;
+import eg.boe.banqueofegypt.data.dto.BalanceResponse;
+import eg.boe.banqueofegypt.data.dto.CheckBalanceRequest;
 import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
 import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
 import eg.boe.banqueofegypt.entity.Transaction;
+import eg.boe.banqueofegypt.exception.BusinessException;
 import eg.boe.banqueofegypt.model.dto.TransactionPreservationDto;
 import eg.boe.banqueofegypt.model.dto.TransactionRetrievalDto;
+import eg.boe.banqueofegypt.util.ExecutionStack;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
@@ -35,16 +39,49 @@ public class TransactionServiceImpl implements TransactionService {
         Transaction transaction = modelMapper.map(transactionPreservationDto, Transaction.class);
         transaction.setStatus(Transaction.Status.PENDING);
         transaction = transactionRepository.save(transaction);
+        BalanceResponse balanceResponse;
+        try {
+            balanceResponse = clientService.getBalance(
+                    new CheckBalanceRequest(TOKEN), transaction.getPayer().getUrl()
+            );
+        } catch (BusinessException e) {
+            transaction.setStatus(Transaction.Status.INVALID_DATA);
+            transactionRepository.save(transaction);
+            throw e;
+        } catch (Exception e) {
+            transaction.setStatus(Transaction.Status.SRC_TIMEOUT);
+            transactionRepository.save(transaction);
+            throw new BusinessException(408, "Source timeout");
+        }
 
-        clientService.withdraw(
+        if (Integer.parseInt(balanceResponse.getBalance()) < Integer.parseInt(transaction.getAmount())) {
+            transaction.setStatus(Transaction.Status.INSUFFICIENT_FUNDS);
+            transactionRepository.save(transaction);
+            throw new BusinessException(403, "Insufficient funds");
+        }
+
+        ExecutionStack stack = new ExecutionStack();
+
+        stack.push(clientService.withdraw(
                 new WithdrawMoneyRequest(TOKEN, transaction.getAmount()), transaction.getPayer().getUrl()
-        );
+        ));
 
-        clientService.deposit(
+        stack.push(clientService.deposit(
                 new DepositMoneyRequest(TOKEN, transaction.getAmount()), transaction.getPayee().getUrl()
-        );
+        ));
 
-        // success
+        try {
+            stack.execute();
+        } catch (BusinessException e) {
+            transaction.setStatus(Transaction.Status.INVALID_DATA);
+            transactionRepository.save(transaction);
+            throw e;
+        } catch (Exception e) {
+            transaction.setStatus(Transaction.Status.FAILED);
+            transactionRepository.save(transaction);
+            throw new BusinessException(500, "`Something went wrong!`");
+        }
+
         transaction.setStatus(Transaction.Status.SUCCESS);
         return modelMapper.map(transactionRepository.save(transaction), TransactionRetrievalDto.class);
     }
