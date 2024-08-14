@@ -6,6 +6,7 @@ import eg.boe.banqueofegypt.data.dto.BalanceResponse;
 import eg.boe.banqueofegypt.data.dto.CheckBalanceRequest;
 import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
 import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
+import eg.boe.banqueofegypt.entity.Account;
 import eg.boe.banqueofegypt.entity.Status;
 import eg.boe.banqueofegypt.entity.Transaction;
 import eg.boe.banqueofegypt.exception.BusinessException;
@@ -17,6 +18,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.List;
 
 import static eg.boe.banqueofegypt.entity.Status.*;
@@ -39,16 +41,25 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     @Transactional
     public TransactionRetrievalDto transact(TransactionPreservationDto transactionPreservationDto) {
-        Transaction transaction = modelMapper.map(transactionPreservationDto, Transaction.class);
+        Transaction transaction = new Transaction();
+        System.out.println(transaction.toString());
+        transaction.setPayer(new Account(transactionPreservationDto.getPayerId()));
+        transaction.setPayee(new Account(transactionPreservationDto.getPayeeId()));
+        transaction.setDate(new Date(System.currentTimeMillis()));
+        transaction.setAmount(transactionPreservationDto.getAmount());
+        transaction.setId(0L);
+        System.out.println(transaction.toString());
+
         transaction.setStatus(PENDING.code);
         transaction = transactionRepository.save(transaction);
+        System.out.println(transaction.toString());
         BalanceResponse balanceResponse;
         try {
             balanceResponse = clientService.getBalance(
                     new CheckBalanceRequest(TOKEN), transaction.getPayer().getUrl()
             );
         } catch (BusinessException e) {
-//            transaction.setStatus(Transaction.Status.INVALID_DATA);
+            transaction.setStatus(INVALID_DATA.code);
             transactionRepository.save(transaction);
             throw e;
         } catch (Exception e) {

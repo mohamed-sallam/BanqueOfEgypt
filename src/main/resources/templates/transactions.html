@@ -125,29 +125,29 @@
                         <h5 class="card-title">Transfer Your Money</h5>
 
                         <!-- Horizontal Form -->
-                        <form>
+                        <form method="post" th:action="@{/createTransaction}" th:object="${transaction}">
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Amount</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputText">
+                                    <input th:field="*{amount}" type="text" class="form-control" id="inputText">
                                 </div>
                             </div>
 
                             <!-- Source Select -->
                             <div class="form-group">
                                 <label for="sourceSelect">Source</label>
-                                <select th:name="employee" class="form-select" id="sourceSelect" aria-label="Source">
-                                    <option th:each="acc : ${accounts}" th:value="${acc.swiftCode}"
-                                            th:text="${acc.name}"></option>
+                                <select th:field="*{payerId}" class="form-select" id="sourceSelect" aria-label="Source">
+                                    <option th:each="acc : ${accounts}" th:value="${acc.getId()}"
+                                            th:text="${acc.getName()}"></option>
                                 </select>
                             </div>
 
                             <!-- Destination Select -->
                             <div class="form-group">
                                 <label for="destinationSelect">Destination</label>
-                                <select th:name="employee" class="form-select" id="destinationSelect" aria-label="Destination">
-                                    <option th:each="acc : ${accounts}" th:value="${acc.swiftCode}"
-                                            th:text="${acc.name}"></option>
+                                <select th:field="*{payeeId}" class="form-select" id="destinationSelect" aria-label="Destination">
+                                    <option th:each="acc : ${accounts}" th:value="${acc.getId()}"
+                                            th:text="${acc.getName()}"></option>
                                 </select>
                             </div>
 
