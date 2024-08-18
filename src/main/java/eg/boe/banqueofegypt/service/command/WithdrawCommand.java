@@ -5,7 +5,7 @@ import eg.boe.banqueofegypt.model.request.WithdrawMoneyRequest;
 import eg.boe.banqueofegypt.exception.BusinessException;
 import eg.boe.banqueofegypt.service.ClientRepository;
 import eg.boe.banqueofegypt.util.Command;
-import eg.boe.banqueofegypt.model.response.Response;
+import eg.boe.banqueofegypt.util.Response;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

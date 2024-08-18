@@ -116,7 +116,7 @@
             <h5 class="card-title">Bank Registration Form</h5>
 
             <!-- Horizontal Form -->
-            <form th:action="@{/createAccount}" th:object="${account}" method="post" class="row g-3">
+            <form th:action="@{/registration}" th:object="${account}" method="post" class="row g-3">
               <div class="col-md-12">
                 <div class="form-floating">
                   <input required type="text" class="form-control" id="inputName" th:field="*{name}" placeholder="Name">

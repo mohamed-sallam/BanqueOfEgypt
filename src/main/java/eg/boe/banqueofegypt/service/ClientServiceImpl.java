@@ -8,7 +8,7 @@ import eg.boe.banqueofegypt.exception.BusinessException;
 import eg.boe.banqueofegypt.service.command.DepositCommand;
 import eg.boe.banqueofegypt.service.command.WithdrawCommand;
 import eg.boe.banqueofegypt.util.Command;
-import eg.boe.banqueofegypt.model.response.Response;
+import eg.boe.banqueofegypt.util.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

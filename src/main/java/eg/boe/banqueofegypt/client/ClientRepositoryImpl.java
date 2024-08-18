@@ -5,7 +5,7 @@ import eg.boe.banqueofegypt.model.response.BalanceResponse;
 import eg.boe.banqueofegypt.model.request.DepositMoneyRequest;
 import eg.boe.banqueofegypt.model.request.WithdrawMoneyRequest;
 import eg.boe.banqueofegypt.service.ClientRepository;
-import eg.boe.banqueofegypt.model.response.Response;
+import eg.boe.banqueofegypt.util.Response;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
