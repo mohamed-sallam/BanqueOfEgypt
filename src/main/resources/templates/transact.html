@@ -143,7 +143,7 @@
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input required th:field="*{amount}" type="number" class="form-control" id="inputText"
+                                    <input min="1000" max="100000000" required th:field="*{amount}" type="number" class="form-control" id="inputText"
                                            placeholder="Amount">
                                     <label for="inputText">Amount</label>
                                 </div>

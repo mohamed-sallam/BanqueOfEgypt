@@ -1,14 +1,10 @@
 package eg.boe.banqueofegypt.model.dto;
 
-import lombok.*;
+import lombok.Data;
 
 import java.sql.Date;
 
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+@Data
 public class TransactionRetrievalDto {
     private Long id;
     private AccountDto payer;

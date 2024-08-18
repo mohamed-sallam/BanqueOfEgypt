@@ -1,12 +1,8 @@
 package eg.boe.banqueofegypt.model.dto;
 
-import lombok.*;
+import lombok.Data;
 
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+@Data
 public class TransactionPreservationDto {
     private Long payerId;
     private Long payeeId;
