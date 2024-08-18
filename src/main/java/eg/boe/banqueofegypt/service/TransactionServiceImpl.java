@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static eg.boe.banqueofegypt.entity.Status.*;
 
@@ -24,6 +25,7 @@ import static eg.boe.banqueofegypt.entity.Status.*;
 @Repository
 public class TransactionServiceImpl implements TransactionService {
     public static final String TOKEN = "BOE-0112-XgF0";
+    private static final Pattern NUMBER_PATTERN = Pattern.compile("^\\d+$");
     private final ClientService clientService;
     private final TransactionRepository transactionRepository;
     private final ModelMapper modelMapper;
@@ -37,6 +39,17 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionRetrievalDto transact(TransactionPreservationDto transactionPreservationDto) {
+        if(!NUMBER_PATTERN.matcher(transactionPreservationDto.getAmount()).matches())
+            throw new BusinessException(400,"Amount must only contain digits");
+        int amount = Integer.parseInt(transactionPreservationDto.getAmount());
+        if(transactionPreservationDto.getAmount().isEmpty())
+            throw new BusinessException(400, "Amount is required");
+        if(amount<= 0)
+            throw new BusinessException(400, "Amount must be positive");
+        if(amount<= 1000)
+            throw new BusinessException(400, "Amount must be more than 1000");
+        if(amount >= 100_000_000)
+            throw new BusinessException(400,"Amount must be less than 100 Million");
         Transaction transaction = new Transaction();
         System.out.println(transaction.toString());
         transaction.setPayer(new Account(transactionPreservationDto.getPayerId()));
