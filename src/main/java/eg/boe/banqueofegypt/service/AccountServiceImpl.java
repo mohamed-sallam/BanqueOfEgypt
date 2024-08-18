@@ -25,10 +25,9 @@ public class AccountServiceImpl implements AccountService {
     public List<AccountDto> getAllAccounts() {
         List<AccountDto> accounts = accountRepository.findAll().stream().map(s -> modelMapper.map(s, AccountDto.class)).toList();
 
-        return accounts.stream().map(acc -> {
+        return accounts.stream().peek(acc -> {
             BalanceResponse balanceResponse = clientService.getBalance(new CheckBalanceRequest(TOKEN), acc.getUrl());
             acc.setBalance(balanceResponse.getBalance());
-            return acc;
         }).toList();
     }
 
