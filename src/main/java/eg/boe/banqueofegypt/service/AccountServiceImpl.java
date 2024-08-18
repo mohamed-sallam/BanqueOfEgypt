@@ -2,10 +2,10 @@ package eg.boe.banqueofegypt.service;
 
 import eg.boe.banqueofegypt.controller.AccountService;
 import eg.boe.banqueofegypt.controller.ClientService;
-import eg.boe.banqueofegypt.data.dto.BalanceResponse;
-import eg.boe.banqueofegypt.data.dto.CheckBalanceRequest;
+import eg.boe.banqueofegypt.model.response.BalanceResponse;
+import eg.boe.banqueofegypt.model.request.BalanceRequest;
 import eg.boe.banqueofegypt.entity.Account;
-import eg.boe.banqueofegypt.model.dto.AccountDto;
+import eg.boe.banqueofegypt.model.dto.AccountPayload;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -22,20 +22,20 @@ public class AccountServiceImpl implements AccountService {
     private final ModelMapper modelMapper;
 
     @Override
-    public List<AccountDto> getAllAccounts() {
-        List<AccountDto> accounts = accountRepository.findAll().stream().map(s -> modelMapper.map(s, AccountDto.class)).toList();
+    public List<AccountPayload> getAllAccounts() {
+        List<AccountPayload> accounts = accountRepository.findAll().stream().map(s -> modelMapper.map(s, AccountPayload.class)).toList();
 
         return accounts.stream().map(acc -> {
-            BalanceResponse balanceResponse = clientService.getBalance(new CheckBalanceRequest(TOKEN), acc.getUrl());
+            BalanceResponse balanceResponse = clientService.getBalance(new BalanceRequest(TOKEN), acc.getUrl());
             acc.setBalance(balanceResponse.getBalance());
             return acc;
         }).toList();
     }
 
     @Override
-    public AccountDto addAccount(AccountDto accountDto) {
-        Account account = modelMapper.map(accountDto, Account.class);
+    public AccountPayload addAccount(AccountPayload accountPayload) {
+        Account account = modelMapper.map(accountPayload, Account.class);
         accountRepository.save(account);
-        return modelMapper.map(account, AccountDto.class);
+        return modelMapper.map(account, AccountPayload.class);
     }
 }

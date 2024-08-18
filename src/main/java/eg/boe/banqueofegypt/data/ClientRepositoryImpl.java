@@ -1,9 +1,9 @@
 package eg.boe.banqueofegypt.data;
 
-import eg.boe.banqueofegypt.data.dto.CheckBalanceRequest;
-import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
-import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
-import eg.boe.banqueofegypt.data.dto.BalanceResponse;
+import eg.boe.banqueofegypt.model.request.BalanceRequest;
+import eg.boe.banqueofegypt.model.request.DepositMoneyRequest;
+import eg.boe.banqueofegypt.model.request.WithdrawMoneyRequest;
+import eg.boe.banqueofegypt.model.response.BalanceResponse;
 import eg.boe.banqueofegypt.util.Response;
 import eg.boe.banqueofegypt.service.ClientRepository;
 import lombok.AllArgsConstructor;
@@ -19,8 +19,8 @@ public class ClientRepositoryImpl implements ClientRepository {
     private final RestTemplate restTemplate = new RestTemplate();
 
     @Override
-    public Response<BalanceResponse> checkBalance(CheckBalanceRequest request, String url) {
-        HttpEntity<CheckBalanceRequest> entity = new HttpEntity<>(request);
+    public Response<BalanceResponse> checkBalance(BalanceRequest request, String url) {
+        HttpEntity<BalanceRequest> entity = new HttpEntity<>(request);
         return restTemplate.exchange(
                 url + "/balance",
                 HttpMethod.POST,

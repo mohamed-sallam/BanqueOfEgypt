@@ -8,12 +8,8 @@ import java.sql.Date;
 import java.util.Map;
 
 
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 @Entity
-@ToString
 @Table(name = "transaction")
 public class Transaction {
     @Id

@@ -7,8 +7,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class TransactionMappingDto {
-    private String payer;
-    private String payee;
+public class TransactionPreservation {
+    private Long payerId;
+    private Long payeeId;
     private String amount;
 }

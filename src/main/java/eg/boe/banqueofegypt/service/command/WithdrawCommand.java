@@ -1,13 +1,12 @@
 package eg.boe.banqueofegypt.service.command;
 
-import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
-import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
+import eg.boe.banqueofegypt.model.request.DepositMoneyRequest;
+import eg.boe.banqueofegypt.model.request.WithdrawMoneyRequest;
 import eg.boe.banqueofegypt.exception.BusinessException;
 import eg.boe.banqueofegypt.service.ClientRepository;
 import eg.boe.banqueofegypt.util.Command;
 import eg.boe.banqueofegypt.util.Response;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.BadRequestException;
 
 @RequiredArgsConstructor
 public class WithdrawCommand implements Command {

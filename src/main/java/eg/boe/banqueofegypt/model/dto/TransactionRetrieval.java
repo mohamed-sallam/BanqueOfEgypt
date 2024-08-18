@@ -1,7 +1,5 @@
 package eg.boe.banqueofegypt.model.dto;
 
-import eg.boe.banqueofegypt.entity.Status;
-import eg.boe.banqueofegypt.entity.Transaction;
 import lombok.*;
 
 import java.sql.Date;
@@ -11,10 +9,10 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class TransactionRetrievalDto {
+public class TransactionRetrieval {
     private Long id;
-    private AccountDto payer;
-    private AccountDto payee;
+    private AccountPayload payer;
+    private AccountPayload payee;
     private String amount;
     private Integer status;
     private Date date;

@@ -1,4 +1,4 @@
-package eg.boe.banqueofegypt.data.dto;
+package eg.boe.banqueofegypt.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +9,6 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BalanceResponse {
-    private String balance;
+public class BalanceRequest {
+    private String token;
 }

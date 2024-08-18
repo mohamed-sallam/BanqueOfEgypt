@@ -1,10 +1,10 @@
 package eg.boe.banqueofegypt.service;
 
 import eg.boe.banqueofegypt.controller.ClientService;
-import eg.boe.banqueofegypt.data.dto.BalanceResponse;
-import eg.boe.banqueofegypt.data.dto.CheckBalanceRequest;
-import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
-import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
+import eg.boe.banqueofegypt.model.response.BalanceResponse;
+import eg.boe.banqueofegypt.model.request.BalanceRequest;
+import eg.boe.banqueofegypt.model.request.DepositMoneyRequest;
+import eg.boe.banqueofegypt.model.request.WithdrawMoneyRequest;
 import eg.boe.banqueofegypt.exception.BusinessException;
 import eg.boe.banqueofegypt.service.command.DepositCommand;
 import eg.boe.banqueofegypt.service.command.WithdrawCommand;
@@ -29,7 +29,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public BalanceResponse getBalance(CheckBalanceRequest request, String url) {
+    public BalanceResponse getBalance(BalanceRequest request, String url) {
         Response<BalanceResponse> response = clientRepository.checkBalance(request, url);
         if (response.getCode() != 200) throw new BusinessException(response.getCode(), response.getMessage());
         return response.getData();

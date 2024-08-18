@@ -1,6 +1,7 @@
 package eg.boe.banqueofegypt.controller;
 
-import eg.boe.banqueofegypt.model.dto.TransactionRetrievalDto;
+import eg.boe.banqueofegypt.model.dto.TransactionPreservation;
+import eg.boe.banqueofegypt.model.dto.TransactionRetrieval;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -14,13 +15,14 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class TransactionController {
     private final TransactionService transactionService;
+    private final AccountService accountService;
 
-
-
-    @GetMapping()
-    public String getAllTransaction(@ModelAttribute TransactionRetrievalDto transaction, Model model) {
-        model.addAttribute("transactions", transactionService.getAllTransactions());
-        return "registration";
+    @PostMapping("//transactions")
+    public String makeTransaction(@ModelAttribute TransactionPreservation transactionPreservation, Model model){
+        model.addAttribute("transaction", transactionPreservation);
+        model.addAttribute("accounts", accountService.getAllAccounts());
+        System.out.println(transactionPreservation);
+        System.out.println(transactionService.transact(transactionPreservation));
+        return "transactions";
     }
-
 }

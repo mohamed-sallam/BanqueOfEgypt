@@ -1,6 +1,7 @@
 package eg.boe.banqueofegypt.controller;
 
-import eg.boe.banqueofegypt.model.dto.TransactionPreservationDto;
+import eg.boe.banqueofegypt.model.dto.AccountPayload;
+import eg.boe.banqueofegypt.model.dto.TransactionPreservation;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,33 +14,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class MainController {
     AccountService accountService;
     TransactionService transactionService;
-    @GetMapping("/dashboard")
+    @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("transactions", transactionService.getAllTransactions());
         return "index";
     }
-    @GetMapping("/allUsers")
-    public String allUsers(Model model) {
+    @GetMapping("/accounts")
+    public String accounts(Model model) {
         model.addAttribute("accounts", accountService.getAllAccounts());
         return "accounts";
     }
-    @GetMapping("/allTransactions")
-    public String allTransactions(Model model) {
-        model.addAttribute("transactions", transactionService.getAllTransactions());
-        return "tables-data";
-    }
-    @GetMapping("/createTransaction")
-    public String createTransaction(Model model) {
+    @GetMapping("//transactions")
+    public String transactionForm(Model model) {
         model.addAttribute("accounts", accountService.getAllAccounts());
-        model.addAttribute("transaction", new TransactionPreservationDto());
+        model.addAttribute("transaction", new TransactionPreservation());
         return "transactions";
     }
-    @PostMapping("/createTransaction")
-    public String createTransaction(@ModelAttribute TransactionPreservationDto transactionPreservationDto, Model model){
-        model.addAttribute("transaction", transactionPreservationDto);
-        model.addAttribute("accounts", accountService.getAllAccounts());
-        System.out.println(transactionPreservationDto);
-        System.out.println(transactionService.transact(transactionPreservationDto));
-        return "transactions";
+
+    @GetMapping("/registration")
+    public String moveToRegistration(Model model) {
+        model.addAttribute("account", new AccountPayload());
+        return "registration";
     }
 }
