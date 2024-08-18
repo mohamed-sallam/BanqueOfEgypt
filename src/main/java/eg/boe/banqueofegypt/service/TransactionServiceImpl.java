@@ -7,19 +7,17 @@ import eg.boe.banqueofegypt.data.dto.CheckBalanceRequest;
 import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
 import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
 import eg.boe.banqueofegypt.entity.Account;
-import eg.boe.banqueofegypt.entity.Status;
 import eg.boe.banqueofegypt.entity.Transaction;
 import eg.boe.banqueofegypt.exception.BusinessException;
 import eg.boe.banqueofegypt.model.dto.TransactionPreservationDto;
 import eg.boe.banqueofegypt.model.dto.TransactionRetrievalDto;
 import eg.boe.banqueofegypt.util.ExecutionStack;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.List;
 
 import static eg.boe.banqueofegypt.entity.Status.*;
@@ -40,7 +38,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
     
     @Override
-    public TransactionRetrievalDto transact(TransactionPreservationDto transactionPreservationDto) {
+    public TransactionRetrievalDto transact(@Valid TransactionPreservationDto transactionPreservationDto) {
         Transaction transaction = new Transaction();
         System.out.println(transaction.toString());
         transaction.setPayer(new Account(transactionPreservationDto.getPayerId()));

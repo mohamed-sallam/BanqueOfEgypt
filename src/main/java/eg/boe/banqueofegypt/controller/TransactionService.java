@@ -2,7 +2,6 @@ package eg.boe.banqueofegypt.controller;
 
 import eg.boe.banqueofegypt.model.dto.TransactionPreservationDto;
 import eg.boe.banqueofegypt.model.dto.TransactionRetrievalDto;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

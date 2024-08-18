@@ -1,13 +1,12 @@
 package eg.boe.banqueofegypt.data;
 
 import eg.boe.banqueofegypt.config.HttpClientConfig;
+import eg.boe.banqueofegypt.data.dto.BalanceResponse;
 import eg.boe.banqueofegypt.data.dto.CheckBalanceRequest;
 import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
 import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
-import eg.boe.banqueofegypt.data.dto.BalanceResponse;
-import eg.boe.banqueofegypt.util.Response;
 import eg.boe.banqueofegypt.service.ClientRepository;
-import lombok.AllArgsConstructor;
+import eg.boe.banqueofegypt.util.Response;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;

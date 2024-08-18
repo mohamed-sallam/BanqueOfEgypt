@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Forms / Layouts - NiceAdmin Bootstrap Template</title>
+    <title>Transact - BOE</title>
 
     <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon">
@@ -53,7 +53,7 @@
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
-        <a href="transactions.html" class="logo d-flex align-items-center">
+        <a href="transact.html" class="logo d-flex align-items-center">
             <img src="assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">Banque of Egypt</span>
         </a>
@@ -72,36 +72,23 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link" href="/registration">
-                <i class="bi bi-grid"></i>
+            <a class="nav-link" href="/registration"> <i class="bi bi-card-list"></i>
                 <span>Registration</span>
             </a>
         </li><!-- End Forms Nav -->
 
         <li class="nav-item">
-            <a class="nav-link" href="/allUsers">
-                <i class="bi bi-grid"></i>
+            <a class="nav-link" href="/accounts">
+                <i class="bi bi-people"></i>
                 <span>Accounts</span>
             </a>
-            <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                <li>
-                    <a th:href="@{/transactions}">
-                        <i class="bi bi-circle"></i><span>General Tables</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/accounts">
-                        <i class="bi bi-circle"></i><span>Data Tables</span>
-                    </a>
-                </li>
-            </ul>
         </li><!-- End Tables Nav -->
 
         <!-- New Transaction Nav Item -->
         <li class="nav-item">
-            <a class="nav-link" href="/createTransaction">
+            <a class="nav-link" href="/transact">
                 <i class="bi bi-cash"></i> <!-- Example icon, adjust as needed -->
-                <span>Transactions</span>
+                <span>Transact</span>
             </a>
         </li><!-- End Transaction Nav -->
 
@@ -109,52 +96,57 @@
 </aside><!-- End Sidebar-->
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Make Transaction</h1>
+        <h1>Transact</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a th:href="@{/}" href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Transactions</li>
+                <li class="breadcrumb-item active">Transact</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
     <section class="section">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Transfer Your Money</h5>
+                        <h5 class="card-title">Make Transactions between Banks</h5>
 
                         <!-- Horizontal Form -->
-                        <form method="post" th:action="@{/createTransaction}" th:object="${transaction}">
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Amount</label>
-                                <div class="col-sm-10">
-                                    <input th:field="*{amount}" type="text" class="form-control" id="inputText">
+                        <form method="post" th:action="@{/transact}" th:object="${transaction}" class="row g-3">
+                            <!-- Source Select -->
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select required th:field="*{payerId}" class="form-select" id="sourceSelect"
+                                            aria-label="Source">
+                                        <option value="" selected="" disabled hidden>Choose source...</option>
+                                        <option th:each="acc : ${accounts}" th:value="${acc.getId()}"
+                                                th:text="${acc.getName()}"
+                                                th:disabled='${acc.getBalance().equals("N/A")}'></option>
+                                    </select>
+                                    <label for="sourceSelect">Source</label>
                                 </div>
                             </div>
 
-                            <!-- Source Select -->
-                            <div class="form-group">
-                                <label for="sourceSelect">Source</label>
-                                <select required th:field="*{payerId}" class="form-select" id="sourceSelect"
-                                        aria-label="Source">
-                                    <option value="" selected disabled hidden>Choose source...</option>
-                                    <option th:each="acc : ${accounts}" th:value="${acc.getId()}"
-                                            th:text="${acc.getName()}"
-                                            th:disabled='${acc.getBalance().equals("N/A")}'></option>
-                                </select>
+                            <!-- Destination Select -->
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select required th:field="*{payerId}" class="form-select" id="destinationSelect"
+                                            aria-label="Destination">
+                                        <option value="" selected="" disabled hidden>Choose destination...</option>
+                                        <option th:each="acc : ${accounts}" th:value="${acc.getId()}"
+                                                th:text="${acc.getName()}"
+                                                th:disabled='${acc.getBalance().equals("N/A")}'></option>
+                                    </select>
+                                    <label for="destinationSelect">Destination</label>
+                                </div>
                             </div>
 
-                            <!-- Destination Select -->
-                            <div class="form-group">
-                                <label for="destinationSelect">Destination</label>
-                                <select required th:field="*{payeeId}" class="form-select" id="destinationSelect"
-                                        aria-label="Destination">
-                                    <option value="" selected disabled hidden>Choose destination...</option>
-                                    <option th:each="acc : ${accounts}" th:value="${acc.getId()}"
-                                            th:text="${acc.getName()}"
-                                            th:disabled='${acc.getBalance().equals("N/A")}'></option>
-                                </select>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input required th:field="*{amount}" type="number" class="form-control" id="inputText"
+                                           placeholder="Amount">
+                                    <label for="inputText">Amount</label>
+                                </div>
                             </div>
 
                             <div class="text-center">

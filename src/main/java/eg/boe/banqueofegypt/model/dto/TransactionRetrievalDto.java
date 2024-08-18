@@ -1,7 +1,5 @@
 package eg.boe.banqueofegypt.model.dto;
 
-import eg.boe.banqueofegypt.entity.Status;
-import eg.boe.banqueofegypt.entity.Transaction;
 import lombok.*;
 
 import java.sql.Date;

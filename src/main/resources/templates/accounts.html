@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Tables / Data - NiceAdmin Bootstrap Template</title>
+  <title>Accounts - BOE</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -65,36 +65,23 @@
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a class="nav-link" href="/registration">
-        <i class="bi bi-grid"></i>
+      <a class="nav-link" href="/registration"> <i class="bi bi-card-list"></i>
         <span>Registration</span>
       </a>
     </li><!-- End Forms Nav -->
 
     <li class="nav-item">
-      <a class="nav-link" href="/allUsers">
-        <i class="bi bi-grid"></i>
+      <a class="nav-link" href="/accounts">
+        <i class="bi bi-people"></i>
         <span>Accounts</span>
       </a>
-      <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-        <li>
-          <a th:href="@{/transactions}">
-            <i class="bi bi-circle"></i><span>General Tables</span>
-          </a>
-        </li>
-        <li>
-          <a href="/accounts">
-            <i class="bi bi-circle"></i><span>Data Tables</span>
-          </a>
-        </li>
-      </ul>
     </li><!-- End Tables Nav -->
 
     <!-- New Transaction Nav Item -->
     <li class="nav-item">
-      <a class="nav-link" href="/createTransaction">
+      <a class="nav-link" href="/transact">
         <i class="bi bi-cash"></i> <!-- Example icon, adjust as needed -->
-        <span>Transactions</span>
+        <span>Transact</span>
       </a>
     </li><!-- End Transaction Nav -->
 
@@ -118,19 +105,11 @@
 
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Datatables</h5>
+            <h5 class="card-title">Accounts</h5>
 
             <!-- Table with stripped rows -->
             <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-              <div class="datatable-top">
-                <div class="datatable-dropdown">
-
-                </div>
-                <div class="datatable-search">
-
-                </div>
-              </div>
-              <div class="datatable-container">
+              <div class="datatable-container" style="border-bottom: none;">
                 <table class="table datatable datatable-table">
                   <thead>
                   <tr>
@@ -140,7 +119,7 @@
                       </button>
                     </th>
                     <th data-sortable="true" style="width: 9.188544152744631%;">
-                      <button class="datatable-sorter">Id</button>
+                      <button class="datatable-sorter">ID</button>
                     </th>
                     <th data-sortable="true" style="width: 28.520286396181383%;"
                         aria-sort="descending" class="datatable-descending">

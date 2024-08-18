@@ -7,7 +7,6 @@ import eg.boe.banqueofegypt.service.ClientRepository;
 import eg.boe.banqueofegypt.util.Command;
 import eg.boe.banqueofegypt.util.Response;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.BadRequestException;
 
 @RequiredArgsConstructor
 public class WithdrawCommand implements Command {
