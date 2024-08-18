@@ -1,4 +1,4 @@
-package eg.boe.banqueofegypt.data.dto;
+package eg.boe.banqueofegypt.model.response;
 
 import lombok.*;
 

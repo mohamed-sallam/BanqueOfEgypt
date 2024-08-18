@@ -2,9 +2,9 @@ package eg.boe.banqueofegypt.service;
 
 import eg.boe.banqueofegypt.controller.ClientService;
 import eg.boe.banqueofegypt.controller.TransactionService;
-import eg.boe.banqueofegypt.data.dto.BalanceResponse;
-import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
-import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
+import eg.boe.banqueofegypt.model.response.BalanceResponse;
+import eg.boe.banqueofegypt.model.request.DepositMoneyRequest;
+import eg.boe.banqueofegypt.model.request.WithdrawMoneyRequest;
 import eg.boe.banqueofegypt.entity.Account;
 import eg.boe.banqueofegypt.entity.Transaction;
 import eg.boe.banqueofegypt.exception.BusinessException;

@@ -1,14 +1,14 @@
 package eg.boe.banqueofegypt.service;
 
 import eg.boe.banqueofegypt.controller.ClientService;
-import eg.boe.banqueofegypt.data.dto.BalanceResponse;
-import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
-import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
+import eg.boe.banqueofegypt.model.response.BalanceResponse;
+import eg.boe.banqueofegypt.model.request.DepositMoneyRequest;
+import eg.boe.banqueofegypt.model.request.WithdrawMoneyRequest;
 import eg.boe.banqueofegypt.exception.BusinessException;
 import eg.boe.banqueofegypt.service.command.DepositCommand;
 import eg.boe.banqueofegypt.service.command.WithdrawCommand;
 import eg.boe.banqueofegypt.util.Command;
-import eg.boe.banqueofegypt.util.Response;
+import eg.boe.banqueofegypt.model.response.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

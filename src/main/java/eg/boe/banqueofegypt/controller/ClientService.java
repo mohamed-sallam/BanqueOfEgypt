@@ -1,8 +1,8 @@
 package eg.boe.banqueofegypt.controller;
 
-import eg.boe.banqueofegypt.data.dto.BalanceResponse;
-import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
-import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
+import eg.boe.banqueofegypt.model.response.BalanceResponse;
+import eg.boe.banqueofegypt.model.request.DepositMoneyRequest;
+import eg.boe.banqueofegypt.model.request.WithdrawMoneyRequest;
 import eg.boe.banqueofegypt.util.Command;
 
 public interface ClientService {

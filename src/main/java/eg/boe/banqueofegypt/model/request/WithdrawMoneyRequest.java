@@ -1,4 +1,4 @@
-package eg.boe.banqueofegypt.util;
+package eg.boe.banqueofegypt.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,6 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Response<T> {
-    private Integer code;
-    private String message;
-    private T data;
+public class WithdrawMoneyRequest {
+    private String amount;
 }

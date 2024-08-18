@@ -2,7 +2,7 @@ package eg.boe.banqueofegypt.service;
 
 import eg.boe.banqueofegypt.controller.AccountService;
 import eg.boe.banqueofegypt.controller.ClientService;
-import eg.boe.banqueofegypt.data.dto.BalanceResponse;
+import eg.boe.banqueofegypt.model.response.BalanceResponse;
 import eg.boe.banqueofegypt.entity.Account;
 import eg.boe.banqueofegypt.model.dto.AccountDto;
 import lombok.RequiredArgsConstructor;
