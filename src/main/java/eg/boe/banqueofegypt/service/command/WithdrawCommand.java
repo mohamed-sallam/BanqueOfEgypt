@@ -21,6 +21,7 @@ public class WithdrawCommand implements Command {
         try {
             response = clientRepository.withdrawMoney(withdrawMoneyRequest, url);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             throw new BusinessException(408, "Withdraw failed");
         }
 

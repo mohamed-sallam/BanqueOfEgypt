@@ -34,7 +34,7 @@ public class ClientRepositoryImpl implements ClientRepository {
         HttpEntity<?> entity = new HttpEntity<>(headers);
         return restTemplate.exchange(
                 url + "/balance",
-                HttpMethod.GET,
+                HttpMethod.POST,
                 entity,
                 new ParameterizedTypeReference<Response<BalanceResponse>>() {
                 }
@@ -45,10 +45,10 @@ public class ClientRepositoryImpl implements ClientRepository {
     public Response<Void> depositMoney(DepositMoneyRequest request, String url) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("token", TOKEN);
-        HttpEntity<DepositMoneyRequest> entity = new HttpEntity<>(request);
+        HttpEntity<DepositMoneyRequest> entity = new HttpEntity<>(request,headers);
         return restTemplate.exchange(
                 url + "/deposit",
-                HttpMethod.GET,
+                HttpMethod.POST,
                 entity,
                 new ParameterizedTypeReference<Response<Void>>() {
                 }
@@ -57,10 +57,12 @@ public class ClientRepositoryImpl implements ClientRepository {
 
     @Override
     public Response<Void> withdrawMoney(WithdrawMoneyRequest request, String url) {
-        HttpEntity<WithdrawMoneyRequest> entity = new HttpEntity<>(request);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("token", TOKEN);
+        HttpEntity<WithdrawMoneyRequest> entity = new HttpEntity<>(request,headers);
         return restTemplate.exchange(
                 url + "/withdraw",
-                HttpMethod.GET,
+                HttpMethod.POST,
                 entity,
                 new ParameterizedTypeReference<Response<Void>>() {
                 }
