@@ -26,8 +26,12 @@ public class AccountServiceImpl implements AccountService {
         List<AccountDto> accounts = accountRepository.findAll().stream().map(s -> modelMapper.map(s, AccountDto.class)).toList();
 
         return accounts.stream().peek(acc -> {
-            BalanceResponse balanceResponse = clientService.getBalance(new CheckBalanceRequest(TOKEN), acc.getUrl());
-            acc.setBalance(balanceResponse.getBalance());
+            try {
+                BalanceResponse balanceResponse = clientService.getBalance(new CheckBalanceRequest(TOKEN), acc.getUrl());
+                acc.setBalance(balanceResponse.getBalance());
+            } catch (Exception e) {
+                acc.setBalance("N/A");
+            }
         }).toList();
     }
 

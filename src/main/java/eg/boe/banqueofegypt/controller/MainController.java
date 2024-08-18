@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class MainController {
     AccountService accountService;
     TransactionService transactionService;
-    @GetMapping("/dashboard")
+    @GetMapping
     public String home(Model model) {
         model.addAttribute("transactions", transactionService.getAllTransactions());
         return "index";
@@ -22,11 +22,6 @@ public class MainController {
     public String allUsers(Model model) {
         model.addAttribute("accounts", accountService.getAllAccounts());
         return "accounts";
-    }
-    @GetMapping("/allTransactions")
-    public String allTransactions(Model model) {
-        model.addAttribute("transactions", transactionService.getAllTransactions());
-        return "tables-data";
     }
     @GetMapping("/createTransaction")
     public String createTransaction(Model model) {

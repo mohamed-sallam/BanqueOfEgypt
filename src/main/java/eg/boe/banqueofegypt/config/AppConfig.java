@@ -10,4 +10,9 @@ public class AppConfig {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
+
+    @Bean
+    public HttpClientConfig httpClientConfig() {
+        return new HttpClientConfig(3000, 1000);
+    }
 }

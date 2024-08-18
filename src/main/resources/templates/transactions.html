@@ -65,7 +65,7 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="/dashboard">
+            <a class="nav-link" href="/">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
@@ -136,23 +136,30 @@
                             <!-- Source Select -->
                             <div class="form-group">
                                 <label for="sourceSelect">Source</label>
-                                <select th:field="*{payerId}" class="form-select" id="sourceSelect" aria-label="Source">
+                                <select required th:field="*{payerId}" class="form-select" id="sourceSelect"
+                                        aria-label="Source">
+                                    <option value="" selected disabled hidden>Choose source...</option>
                                     <option th:each="acc : ${accounts}" th:value="${acc.getId()}"
-                                            th:text="${acc.getName()}"></option>
+                                            th:text="${acc.getName()}"
+                                            th:disabled='${acc.getBalance().equals("N/A")}'></option>
                                 </select>
                             </div>
 
                             <!-- Destination Select -->
                             <div class="form-group">
                                 <label for="destinationSelect">Destination</label>
-                                <select th:field="*{payeeId}" class="form-select" id="destinationSelect" aria-label="Destination">
+                                <select required th:field="*{payeeId}" class="form-select" id="destinationSelect"
+                                        aria-label="Destination">
+                                    <option value="" selected disabled hidden>Choose destination...</option>
                                     <option th:each="acc : ${accounts}" th:value="${acc.getId()}"
-                                            th:text="${acc.getName()}"></option>
+                                            th:text="${acc.getName()}"
+                                            th:disabled='${acc.getBalance().equals("N/A")}'></option>
                                 </select>
                             </div>
 
                             <div class="text-center">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+                                <button id="main-submit" type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#confirmationModal">
                                     Submit
                                 </button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>
@@ -167,7 +174,8 @@
 </main><!-- End #main -->
 
 <!-- Confirmation Modal -->
-<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -200,10 +208,10 @@
 
 <!-- Form Submission Script -->
 <script>
-    document.getElementById('confirmSubmit').addEventListener('click', function () {
-        // Submit the form
+    document.getElementById('confirmSubmit').addEventListener('click', (event) => {
         document.querySelector('form').submit();
     });
+
 </script>
 
 </body>

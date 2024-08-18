@@ -32,8 +32,4 @@ public class AccountController {
         model.addAttribute("account", new AccountDto());
         return "registration";
     }
-    @GetMapping("/")
-    public String moveToIndex(Model model) {
-        return "index";
-    }
 }
