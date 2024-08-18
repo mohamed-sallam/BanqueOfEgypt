@@ -20,6 +20,7 @@ public class WithdrawCommand implements Command {
         try {
             response = clientRepository.withdrawMoney(withdrawMoneyRequest, url);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             throw new BusinessException(408, "Withdraw failed");
         }
 
@@ -29,6 +30,6 @@ public class WithdrawCommand implements Command {
 
     @Override
     public void undo() {
-        clientRepository.depositMoney(new DepositMoneyRequest(withdrawMoneyRequest.getToken(), withdrawMoneyRequest.getAmount()), url);
+        clientRepository.depositMoney(new DepositMoneyRequest( withdrawMoneyRequest.getAmount()), url);
     }
 }

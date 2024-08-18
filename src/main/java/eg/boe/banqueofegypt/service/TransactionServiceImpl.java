@@ -3,7 +3,6 @@ package eg.boe.banqueofegypt.service;
 import eg.boe.banqueofegypt.controller.ClientService;
 import eg.boe.banqueofegypt.controller.TransactionService;
 import eg.boe.banqueofegypt.data.dto.BalanceResponse;
-import eg.boe.banqueofegypt.data.dto.CheckBalanceRequest;
 import eg.boe.banqueofegypt.data.dto.DepositMoneyRequest;
 import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
 import eg.boe.banqueofegypt.entity.Account;
@@ -32,11 +31,11 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionRetrievalDto> getAllTransactions() {
-        return transactionRepository.findAll().stream().map(it->
+        return transactionRepository.findAll().stream().map(it ->
                 modelMapper.map(it, TransactionRetrievalDto.class)
         ).toList();
     }
-    
+
     @Override
     public TransactionRetrievalDto transact(@Valid TransactionPreservationDto transactionPreservationDto) {
         Transaction transaction = new Transaction();
@@ -54,7 +53,7 @@ public class TransactionServiceImpl implements TransactionService {
         BalanceResponse balanceResponse;
         try {
             balanceResponse = clientService.getBalance(
-                    new CheckBalanceRequest(TOKEN), transaction.getPayer().getUrl()
+                    transaction.getPayer().getUrl()
             );
         } catch (BusinessException e) {
             transaction.setStatus(INVALID_DATA.code);
@@ -75,13 +74,12 @@ public class TransactionServiceImpl implements TransactionService {
 
         ExecutionStack stack = new ExecutionStack();
 
-        stack.push(clientService.withdraw(
-                new WithdrawMoneyRequest(TOKEN, transaction.getAmount()), transaction.getPayer().getUrl()
-        ));
+        stack.push(
+                clientService.withdraw(
+                new WithdrawMoneyRequest(transaction.getAmount()),transaction.getPayer().getUrl())
+        );
 
-        stack.push(clientService.deposit(
-                new DepositMoneyRequest(TOKEN, transaction.getAmount()), transaction.getPayee().getUrl()
-        ));
+        stack.push(clientService.deposit(new DepositMoneyRequest(transaction.getAmount()),transaction.getPayee().getUrl()));
 
         try {
             stack.execute();
