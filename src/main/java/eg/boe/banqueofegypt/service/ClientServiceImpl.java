@@ -28,7 +28,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public BalanceResponse getBalance( String url) {
+    public BalanceResponse getBalance(String url) {
         Response<BalanceResponse> response = clientRepository.checkBalance(url);
         if (response.getCode() != 200) throw new BusinessException(response.getCode(), response.getMessage());
         return response.getData();

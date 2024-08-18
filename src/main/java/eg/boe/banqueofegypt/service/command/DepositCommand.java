@@ -29,6 +29,6 @@ public class DepositCommand implements Command {
 
     @Override
     public void undo() {
-        clientRepository.withdrawMoney(new WithdrawMoneyRequest( depositMoneyRequest.getAmount()), url);
+        clientRepository.withdrawMoney(new WithdrawMoneyRequest(depositMoneyRequest.getAmount()), url);
     }
 }

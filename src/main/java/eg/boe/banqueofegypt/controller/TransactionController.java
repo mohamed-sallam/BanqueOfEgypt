@@ -28,7 +28,7 @@ public class TransactionController {
     }
 
     @PostMapping("/transact")
-    public String makeTransaction(@ModelAttribute TransactionPreservationDto transactionPreservationDto, Model model){
+    public String makeTransaction(@ModelAttribute TransactionPreservationDto transactionPreservationDto, Model model) {
         model.addAttribute("transaction", transactionPreservationDto);
         model.addAttribute("accounts", accountService.getAllAccounts());
         transactionService.transact(transactionPreservationDto);

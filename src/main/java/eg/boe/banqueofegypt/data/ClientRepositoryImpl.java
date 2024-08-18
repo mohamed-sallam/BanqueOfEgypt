@@ -28,7 +28,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Response<BalanceResponse> checkBalance( String url) {
+    public Response<BalanceResponse> checkBalance(String url) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("token", TOKEN);
         HttpEntity<?> entity = new HttpEntity<>(headers);
@@ -45,7 +45,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     public Response<Void> depositMoney(DepositMoneyRequest request, String url) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("token", TOKEN);
-        HttpEntity<DepositMoneyRequest> entity = new HttpEntity<>(request,headers);
+        HttpEntity<DepositMoneyRequest> entity = new HttpEntity<>(request, headers);
         return restTemplate.exchange(
                 url + "/deposit",
                 HttpMethod.POST,
@@ -59,7 +59,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     public Response<Void> withdrawMoney(WithdrawMoneyRequest request, String url) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("token", TOKEN);
-        HttpEntity<WithdrawMoneyRequest> entity = new HttpEntity<>(request,headers);
+        HttpEntity<WithdrawMoneyRequest> entity = new HttpEntity<>(request, headers);
         return restTemplate.exchange(
                 url + "/withdraw",
                 HttpMethod.POST,

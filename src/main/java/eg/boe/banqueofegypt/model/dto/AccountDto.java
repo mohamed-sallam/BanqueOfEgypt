@@ -13,7 +13,7 @@ public class AccountDto {
     private String balance;
     private String url;
 
-    public static AccountDto getAccountById(String swiftCode, List<AccountDto> list){
+    public static AccountDto getAccountById(String swiftCode, List<AccountDto> list) {
         return list.stream().filter(a -> a.getSwiftCode().equals(swiftCode)).findFirst().orElse(null);  // null if no account found
     }
     //todo private List<TransactionDto> transactionDtoList;

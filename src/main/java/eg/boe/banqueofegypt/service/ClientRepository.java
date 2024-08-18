@@ -6,7 +6,7 @@ import eg.boe.banqueofegypt.data.dto.WithdrawMoneyRequest;
 import eg.boe.banqueofegypt.util.Response;
 
 public interface ClientRepository {
-    Response<BalanceResponse> checkBalance(  String url);
+    Response<BalanceResponse> checkBalance(String url);
 
     Response<Void> depositMoney(DepositMoneyRequest request, String url);
 

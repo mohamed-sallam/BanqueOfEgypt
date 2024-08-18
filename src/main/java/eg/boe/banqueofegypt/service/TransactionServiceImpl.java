@@ -39,17 +39,17 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public TransactionRetrievalDto transact(@Valid TransactionPreservationDto transactionPreservationDto) {
         Transaction transaction = new Transaction();
-        System.out.println(transaction.toString());
+        System.out.println(transaction);
         transaction.setPayer(new Account(transactionPreservationDto.getPayerId()));
         transaction.setPayee(new Account(transactionPreservationDto.getPayeeId()));
         transaction.setDate(new Date(System.currentTimeMillis()));
         transaction.setAmount(transactionPreservationDto.getAmount());
         transaction.setId(0L);
         transaction.setStatus(PENDING.code);
-        System.out.println(transaction.toString());
+        System.out.println(transaction);
         transaction = transactionRepository.save(transaction);
         transaction = transactionRepository.findById(transaction.getId()).get();
-        System.out.println(transaction.toString());
+        System.out.println(transaction);
         BalanceResponse balanceResponse;
         try {
             balanceResponse = clientService.getBalance(
@@ -76,10 +76,10 @@ public class TransactionServiceImpl implements TransactionService {
 
         stack.push(
                 clientService.withdraw(
-                new WithdrawMoneyRequest(transaction.getAmount()),transaction.getPayer().getUrl())
+                        new WithdrawMoneyRequest(transaction.getAmount()), transaction.getPayer().getUrl())
         );
 
-        stack.push(clientService.deposit(new DepositMoneyRequest(transaction.getAmount()),transaction.getPayee().getUrl()));
+        stack.push(clientService.deposit(new DepositMoneyRequest(transaction.getAmount()), transaction.getPayee().getUrl()));
 
         try {
             stack.execute();

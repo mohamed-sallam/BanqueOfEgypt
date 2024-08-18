@@ -10,5 +10,5 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DepositMoneyRequest {
-    private  String amount;
+    private String amount;
 }

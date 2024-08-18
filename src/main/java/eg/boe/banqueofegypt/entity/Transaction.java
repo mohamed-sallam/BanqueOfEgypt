@@ -29,16 +29,16 @@ public class Transaction {
 //    @NotNull(message = "Payee is required")
     private Account payee;
 
-//    @Pattern(regexp = "^[0-9]*$", message = "Amount must be a number")
+    //    @Pattern(regexp = "^[0-9]*$", message = "Amount must be a number")
 //    @Positive(message = "Amount must be not negative or zero")
 //    @Size(min = 4, max = 9, message = "amounts must be from $10,000 to $1000,000,000")
     private String amount;
 
-//    @NotNull(message = "Status is required")
+    //    @NotNull(message = "Status is required")
 //    @Enumerated(EnumType.STRING)
     private Long status;
 
-//    @NotNull(message = "Date is required")
+    //    @NotNull(message = "Date is required")
 //    @PastOrPresent(message = "Date must be in the past or present")
     private Date date;
 

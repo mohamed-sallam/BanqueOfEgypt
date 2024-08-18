@@ -10,5 +10,5 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WithdrawMoneyRequest {
-    private  String amount;
+    private String amount;
 }

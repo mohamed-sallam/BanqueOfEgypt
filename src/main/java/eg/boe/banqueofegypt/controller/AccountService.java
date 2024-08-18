@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface AccountService {
     List<AccountDto> getAllAccounts();
+
     AccountDto addAccount(AccountDto accountDto);
+
     Account getAccountId(Long id);
 }
