@@ -13,6 +13,6 @@ public class AppConfig {
 
     @Bean
     public HttpClientConfig httpClientConfig() {
-        return new HttpClientConfig(3000, 1000);
+        return new HttpClientConfig(5000, 2000);
     }
 }

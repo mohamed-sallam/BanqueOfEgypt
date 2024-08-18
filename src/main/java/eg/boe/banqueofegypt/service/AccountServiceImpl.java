@@ -3,7 +3,6 @@ package eg.boe.banqueofegypt.service;
 import eg.boe.banqueofegypt.controller.AccountService;
 import eg.boe.banqueofegypt.controller.ClientService;
 import eg.boe.banqueofegypt.data.dto.BalanceResponse;
-import eg.boe.banqueofegypt.data.dto.CheckBalanceRequest;
 import eg.boe.banqueofegypt.entity.Account;
 import eg.boe.banqueofegypt.model.dto.AccountDto;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +26,7 @@ public class AccountServiceImpl implements AccountService {
 
         return accounts.stream().peek(acc -> {
             try {
-                BalanceResponse balanceResponse = clientService.getBalance(new CheckBalanceRequest(TOKEN), acc.getUrl());
+                BalanceResponse balanceResponse = clientService.getBalance(acc.getUrl());
                 acc.setBalance(balanceResponse.getBalance());
             } catch (Exception e) {
                 acc.setBalance("N/A");
@@ -40,5 +39,10 @@ public class AccountServiceImpl implements AccountService {
         Account account = modelMapper.map(accountDto, Account.class);
         accountRepository.save(account);
         return modelMapper.map(account, AccountDto.class);
+    }
+
+    @Override
+    public Account getAccountId(Long id) {
+        return accountRepository.getById(id);
     }
 }

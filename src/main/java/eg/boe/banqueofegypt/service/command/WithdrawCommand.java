@@ -30,6 +30,6 @@ public class WithdrawCommand implements Command {
 
     @Override
     public void undo() {
-        clientRepository.depositMoney(new DepositMoneyRequest(withdrawMoneyRequest.getToken(), withdrawMoneyRequest.getAmount()), url);
+        clientRepository.depositMoney(new DepositMoneyRequest( withdrawMoneyRequest.getAmount()), url);
     }
 }
