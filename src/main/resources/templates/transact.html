@@ -130,7 +130,7 @@
                             <!-- Destination Select -->
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <select required th:field="*{payerId}" class="form-select" id="destinationSelect"
+                                    <select required th:field="*{payeeId}" class="form-select" id="destinationSelect"
                                             aria-label="Destination">
                                         <option value="" selected="" disabled hidden>Choose destination...</option>
                                         <option th:each="acc : ${accounts}" th:value="${acc.getId()}"

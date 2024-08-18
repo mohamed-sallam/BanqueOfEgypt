@@ -29,9 +29,10 @@ public class TransactionController {
 
     @PostMapping("/transact")
     public String makeTransaction(@ModelAttribute TransactionPreservationDto transactionPreservationDto, Model model) {
+        System.out.println("incontroller"+transactionPreservationDto);
         model.addAttribute("transaction", transactionPreservationDto);
         model.addAttribute("accounts", accountService.getAllAccounts());
         transactionService.transact(transactionPreservationDto);
-        return "transact";
+        return "redirect:/";
     }
 }

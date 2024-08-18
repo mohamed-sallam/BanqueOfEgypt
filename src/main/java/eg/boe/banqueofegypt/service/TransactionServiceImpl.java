@@ -39,11 +39,12 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionRetrievalDto transact(TransactionPreservationDto transactionPreservationDto) {
+        if(transactionPreservationDto.getAmount().isEmpty())
+            throw new BusinessException(400, "Amount is required");
         if(!NUMBER_PATTERN.matcher(transactionPreservationDto.getAmount()).matches())
             throw new BusinessException(400,"Amount must only contain digits");
         int amount = Integer.parseInt(transactionPreservationDto.getAmount());
-        if(transactionPreservationDto.getAmount().isEmpty())
-            throw new BusinessException(400, "Amount is required");
+
         if(amount<= 0)
             throw new BusinessException(400, "Amount must be positive");
         if(amount<= 1000)
