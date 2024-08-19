@@ -29,7 +29,7 @@ public class AccountServiceImpl implements AccountService {
             } catch (Exception e) {
                 acc.setBalance("N/A");
             }
-        }).toList();
+        }).parallel().toList();
     }
 
     @Override
