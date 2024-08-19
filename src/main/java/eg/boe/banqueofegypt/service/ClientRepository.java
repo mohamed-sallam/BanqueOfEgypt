@@ -4,6 +4,7 @@ import eg.boe.banqueofegypt.model.response.BalanceResponse;
 import eg.boe.banqueofegypt.model.request.DepositMoneyRequest;
 import eg.boe.banqueofegypt.model.request.WithdrawMoneyRequest;
 import eg.boe.banqueofegypt.util.Response;
+import org.aspectj.weaver.BCException;
 
 public interface ClientRepository {
     Response<BalanceResponse> checkBalance(String url);

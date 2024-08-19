@@ -11,6 +11,6 @@ public interface PresentationUtil {
         int magnitude = (int) (Math.log10(number) / Math.log10(step));
         double normalizedNumber = number / Math.pow(step, magnitude);
 
-        return String.format("%.1f%s", normalizedNumber, postfixes[magnitude]);
+        return String.format("%.1f%s", normalizedNumber, postfixes[magnitude])+" EGP";
     }
 }

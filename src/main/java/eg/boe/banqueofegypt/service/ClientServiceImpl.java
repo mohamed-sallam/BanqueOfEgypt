@@ -24,13 +24,17 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Command withdraw(WithdrawMoneyRequest request, String url) {
-        return new WithdrawCommand(request, url, clientRepository);
+            return new WithdrawCommand(request, url, clientRepository);
     }
 
     @Override
-    public BalanceResponse getBalance(String url) {
-        Response<BalanceResponse> response = clientRepository.checkBalance(url);
-        if (response.getCode() != 200) throw new BusinessException(response.getCode(), response.getMessage());
-        return response.getData();
+    public BalanceResponse getBalance(String url)  {
+        try {
+            Response<BalanceResponse> response = clientRepository.checkBalance(url);
+            if (response.getCode() != 200) throw new BusinessException(response.getCode(), response.getMessage());
+            return response.getData();
+        }catch (Exception e) {
+            throw new BusinessException(500, "Failed to get balance");
+        }
     }
 }

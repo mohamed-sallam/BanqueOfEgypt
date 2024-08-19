@@ -1,6 +1,7 @@
 package eg.boe.banqueofegypt.client;
 
 import eg.boe.banqueofegypt.config.HttpClientConfig;
+import eg.boe.banqueofegypt.exception.BusinessException;
 import eg.boe.banqueofegypt.model.response.BalanceResponse;
 import eg.boe.banqueofegypt.model.request.DepositMoneyRequest;
 import eg.boe.banqueofegypt.model.request.WithdrawMoneyRequest;
@@ -28,17 +29,21 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Response<BalanceResponse> checkBalance(String url) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("token", TOKEN);
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        return restTemplate.exchange(
-                url + "/balance",
-                HttpMethod.POST,
-                entity,
-                new ParameterizedTypeReference<Response<BalanceResponse>>() {
-                }
-        ).getBody();
+    public Response<BalanceResponse> checkBalance(String url)  {
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("token", TOKEN);
+            HttpEntity<?> entity = new HttpEntity<>(headers);
+            return restTemplate.exchange(
+                    url + "/balance",
+                    HttpMethod.POST,
+                    entity,
+                    new ParameterizedTypeReference<Response<BalanceResponse>>() {
+                    }
+            ).getBody();
+        }catch (Exception e) {
+            throw new BusinessException(500, "Failed to check balance");
+        }
     }
 
     @Override
