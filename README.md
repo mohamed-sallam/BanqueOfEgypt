@@ -1,5 +1,5 @@
 # Banque of Egypt
-Banque of Egypt is a simple CRUD middle ware that manage the transactions between banks:
+Banque of Egypt is a simple CRUD middleware that manage the transactions between banks:
 - Transfer money between banks.
 - List the registered banks.
 - List the transaction history.
