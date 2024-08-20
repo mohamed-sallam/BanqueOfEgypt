@@ -4,13 +4,8 @@
 
 **Endpoint:** `POST /balance`
 
-**Request Body:**
-
-```json
-{
-  "token": "BOE-0112-XgF0"
-}
-```
+**Request Header:**
+```token: "BOE-0112-XgF0"```
 
 **Description:** Retrieves the current balance of the bank.
 
@@ -42,10 +37,12 @@
 
 **Endpoint:** `POST /deposit`
 
-**Request Parameters:** 
+**Request Header:**
+```token: "BOE-0112-XgF0"```
+
+**Request Body:** 
 ```json
 {
-  "token": "BOE-0112-XgF0",
   "amount": "10000"
 }
 ```
@@ -86,10 +83,12 @@
 
 **Endpoint:** `POST /withdraw`
 
-**Request Parameters:** 
+**Request Header:**
+```token: "BOE-0112-XgF0"```
+
+**Request Body:** 
 ```json
 {
-  "token": "BOE-0112-XgF0",
   "amount": "10000"
 }
 ```
