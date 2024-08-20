@@ -19,7 +19,6 @@ We used:
 - Lombok
 - MySQL
 - Clean Architecture
-- Swagger UI
 
 ![image](https://github.com/user-attachments/assets/e5525ad9-a91c-463e-b14d-59cfe5343559)
 ![image](https://github.com/user-attachments/assets/35aca862-915e-4c9d-a78a-95d3a73a2f3f)
